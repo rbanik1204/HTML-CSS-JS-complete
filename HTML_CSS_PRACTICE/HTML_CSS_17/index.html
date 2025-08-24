@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLOAT AND CLEAR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            font-family: 'Times new Roman';
+        }
+        .cards {
+            border: 2px solid rebeccapurple;
+            display:flow-root;
+        }
+        img {
+            float: left;
+        }
+        .card{
+            border:3px solid red;
+        }
+        .cards:Nth-child(3){
+            background-color: aqua;
+            clear:left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cards">
+        <p>This example demonstrates the use of float and clear properties in CSS.</p>
+            <img src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D"
+        alt="" width="230px">
+        <div class="card">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente earum cumque enim, aspernatur necessitatibus hic nulla culpa sint in animi vitae fugiat voluptas fuga error iste magni voluptatibus nesciunt excepturi beatae reiciendis, illo delectus. Numquam adipisci, vitae illo doloribus mollitia, totam quia nam fuga officiis consequatur molestiae ut quasi! Hic, veritatis repudiandae consectetur mollitia ab debitis ea soluta. Labore obcaecati rerum error expedita adipisci optio, quos nihil fuga vel et explicabo aliquid suscipit, iure cupiditate beatae animi, placeat ab recusandae dolore quisquam nisi. Ex deserunt officiis odio impedit ipsam dignissimos aperiam aliquam esse totam accusamus eaque maxime provident veritatis, optio velit dolore quibusdam! Quo, ut, deserunt dolorum officia eum delectus iste asperiores eos aspernatur est reprehenderit aliquid non quaerat voluptatum fuga pariatur nesciunt explicabo et earum laboriosam ipsam! Eius obcaecati atque earum optio maiores modi deleniti at quod excepturi voluptatum labore asperiores sit amet ab voluptate corrupti in facilis voluptas, cupiditate perferendis iure necessitatibus ratione assumenda. Facilis odio qui cum quo, cupiditate, culpa tempora minus ex, molestias consequatur voluptatibus eveniet enim quidem suscipit dicta? Doloremque, quisquam. Fugit ipsam officia vitae minima beatae asperiores perferendis minus temporibus sapiente repellendus error placeat eaque natus in eos incidunt provident mollitia esse, accusamus odit voluptatum quidem neque illo nostrum. Consequatur rem voluptate, corporis veritatis corrupti saepe ullam iusto. Veritatis, placeat. Voluptatibus doloribus rem veritatis sapiente commodi repudiandae vitae odit, error voluptatum? Commodi quod excepturi eos nemo soluta. Possimus dicta illum enim reiciendis sunt, magnam nam assumenda! Obcaecati soluta eligendi sit. Blanditiis suscipit repudiandae temporibus harum corporis mollitia sunt hic, doloribus cumque excepturi minus quod nam consectetur eaque saepe impedit dolorem illum facilis veritatis, velit voluptates perferendis sequi possimus nobis. Corporis aspernatur earum repellendus, temporibus hic odio magnam, placeat, neque obcaecati maiores mollitia! Perspiciatis, nisi iusto aspernatur excepturi assumenda corporis natus nulla? Itaque, dolores cumque, voluptas excepturi unde at eos vel est quae laborum eaque molestias! Accusamus aliquam similique doloremque porro aut facilis, quos pariatur voluptatibus perspiciatis placeat culpa tempore voluptatum quisquam earum ipsam fuga impedit est vero.</div>
+        <div class="card">Card 2</div>
+        <div class="card">Card 3</div>
+    </div>
+</body>
+
+</html>

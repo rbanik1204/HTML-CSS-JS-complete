@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS SIZING</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            box-sizing:border-box;
+            margin:auto;
+            border: 2px solid blueviolet;
+            width: 80vw;
+            height:10vh;
+            color: black;
+            background-color: yellowgreen;
+        }
+        .container {
+            box-sizing:border-box;
+            margin:23px auto;
+            border: 2px solid blueviolet;
+            width: 80vw;
+            /* height:80vh; */
+            font-size:16px;
+            color: solid black;
+            background-color: yellowgreen;
+        }
+        .container>p{
+            font-size:1.5em;
+        }
+        .mycont{
+            box-sizing:border-box;
+            font-size:18px;
+            margin:23px auto;
+            border: 2px solid blueviolet;
+            width:80vw;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class = "box">This is a box</div>
+    <div class="container">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem delectus quam, minima repellendus id esse? Deserunt sed maxime harum recusandae deleniti, sapiente nesciunt!
+        <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam accusantium temporibus excepturi nisi aspernatur at cumque consequuntur molestiae repudiandae ad praesentium harum quo ea eligendi quis, perspiciatis, sapiente qui quasi aliquam doloremque vel. Odio maxime qui fugit, laborum animi nisi quasi perferendis voluptates tempore nobis! Optio doloremque obcaecati ab magni provident assumenda dolorum doloribus, eos culpa!
+        </p>
+    </div>
+    <div class="mycont">
+        I am another container
+    </div>
+</body>
+
+</html>

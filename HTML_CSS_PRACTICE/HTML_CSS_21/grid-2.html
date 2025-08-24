@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS GRID</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            border:2px solid blueviolet;
+            display:grid;
+            grid-template-areas:"nav nav nav nav"
+                                 "main main empty sidebar"
+                                 "footer footer footer footer";
+        }
+        .container .item{
+            height: 40px;
+            /* background-color: rgb(21, 108, 137); */
+            border:2px solid blue;
+        }
+        .item-1{
+            grid-area:nav;
+            
+            background-color: lightcoral;
+        }
+        .item-2{
+            grid-area:main;
+            background-color: lightgreen;
+        }
+        .item-3{
+            grid-area:empty;
+            background-color: lightyellow;
+        }
+        .item-4{
+            grid-area:sidebar;
+            background-color: lightpink;
+        }
+        .item-5{
+            grid-area:footer;
+            background-color: rgb(129, 10, 10);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARD</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: white;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        position:relative;
+    }
+    h2{
+        padding:5px;
+        color:rgb(66, 139, 84);
+        position:relative;
+        left :8px;
+        transform:translateY(-8px);
+    }
+    .container {
+        box-sizing:border-box;
+        width: 25vw;
+        height: 80vh;
+        border: 2px solid rgba(140, 128, 128, 0.627);
+        border-radius: 15px;
+        box-shadow: 0 0 1px 0;
+        background-color: rgb(232, 223, 223);
+        position:relative;
+        top:10vh;
+    }
+    ul{
+        position: relative;
+        display:flex;
+        font-size:20px;
+        /* padding:0 40px; */
+        
+    }
+    ul li{
+        list-style-type: none;
+        padding:15px;
+        color:rgb(96, 136, 93);
+        padding:15px 30px;
+    }
+    .image>img {
+        width:24vw;
+        height:35vh;
+        border-radius: 15px;
+        position: relative;
+        top: 6px;
+        left:6px;
+        opacity: 90%;
+    }
+    p{  
+        padding:0 10px;
+        color:rgb(69, 119, 119);
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 20px;
+    }
+    .button button{    
+        border:2px solid white;
+        height:40px;
+        width:130px;
+        font-size: 15px;
+        border:none;
+        border-radius:15px;
+        color:rgb(51, 140, 73);
+        background-color: rgb(204, 235, 235); 
+    }
+    .button button:hover{
+        background-color: rgb(90, 164, 118);
+        color:white;
+        cursor: pointer;
+    }
+    .button{
+        position: relative;
+        top:15px;
+        text-align:center;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="image">
+            <img class="img" src="/download.jpg" alt="Not available">
+        </div>
+        <ul>
+            <li>Nature</li>
+            <li>Lake</li>
+        </ul>
+        <h2>Lorem ipsum</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta libero aut, illo sunt minus eum eaque possimus Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio est veniam tempora similique non praesentium incidunt voluptatum eveniet vel cupiditate, consequatur maxime iure. soluta natus assumenda voluptate velit</p>
+        <div class="button">
+        <button>Read more</button>
+        </div>
+    </div>
+</body>
+
+</html>
