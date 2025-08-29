@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    color:black;
+}
+.navbar {
+    margin:5px;
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+    column-gap: auto;
+    display: flex;
+    border-radius: 5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: black;
+}
