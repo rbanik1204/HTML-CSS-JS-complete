@@ -8,3 +8,6 @@ elem.removeAttribute("att_one");
 // elem.getAttribute("att_one")
 // null --> so now as the attribute is removed hence printing null
 //attributes returns namedNodeMap
+elem.setAttribute("hidden",1);// hides the element
+// elem.removeAttribute("hidden");
+console.log(elem.dataset.one);

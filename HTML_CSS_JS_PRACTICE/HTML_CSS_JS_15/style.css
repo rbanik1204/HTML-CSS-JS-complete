@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.yellow {
+    width:80vw;
+    height:40vh;
+    background-color: aqua;
+    margin: 2em auto;
+    display:flex;
+    align-items: center;
+    background-color: yellow;
+}
+.aqua{
+    width:80vw;
+    height:40vh;
+    background-color: aqua;
+    margin: 2em auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
