@@ -10,4 +10,4 @@ let y = (e) =>{
 }
 form.password.autocomplete = 'on';
 form.Reset.addEventListener('click',y);
-form.Reset.addEventListener('click',x);
+form.Submit.addEventListener('click',x);
