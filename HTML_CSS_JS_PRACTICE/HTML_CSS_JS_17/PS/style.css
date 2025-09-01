@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container{
+    height:30vh;
+    width:40vw;
+    margin:20vh auto;
+    background-color:yellow;
+}
+.box{
+    height:30vh;
+    width:40vw;
+    margin:20vh auto;
+    background-color:white;
+}
