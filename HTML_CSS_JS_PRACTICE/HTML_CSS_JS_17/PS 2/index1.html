@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic list Item Addition</title>
+</head>
+<body>
+    <ul class="list">
+        <li>Home</li>
+        <li>about</li>
+        <li>Contact</li>
+    </ul>
+    <button type="button">Add item</button>
+    <script>
+        const list = document.getElementsByClassName("list")[0];
+        const addBtn = list.nextElementSibling;
+        list.addEventListener('click',(e)=>{
+            if(e.target.tagName ==='LI'){
+                console.log(e.type,e.target.textContent);
+            }
+        });
+        addBtn.addEventListener('click',(e)=>{
+            let elem = document.createElement("li");
+            elem.textContent="Add by"+e.type;
+            list.appendChild(elem);
+            console.log(list);
+        });
+    </script>
+</body>
+</html>
