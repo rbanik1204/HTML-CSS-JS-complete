@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms (Validation & Interaction)</title>
+</head>
+<body>
+    <form id="myForm" action="none">
+        <label for="username">Enter username:
+        <input type="text" placeholder="username"name="username" title="username" id="username" autocomplete="new-password">
+        </label>
+        <label for="password">Password:
+            <input type="password" id="password" title="password" id="password" autocomplete>
+        </label>
+    </form>
+    <button type="submit">Login</button>
+    <button type="button">Register</button>
+    <script>
+        let form = document.getElementById("myForm");
+        form.addEventListener('click',(e) =>{
+            if(e.target.name === "username"){
+                console.log(e.target.tagName," Changed to:",e.target.value);
+            }
+            if(e.target.name === "password"){
+                console.log(e.target.tagName," Changed to:",e.target.value);
+            }    
+        });
+    </script>
+</body>
+</html>

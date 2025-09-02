@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke</title>
+</head>
+<body>
+    <button type="button">Press it</button>
+    <script>
+        let obj = {
+            "joke1":"Why did the two Java methods get a divorce?",
+            "joke2":"Why did the edge server go bankrupt?",
+            "joke3":"How many developers does it take to screw in a lightbulb?",
+            "joke4":"Why did the private classes break up?",
+            "joke5":"Why do programmers confuse Christmas with Halloween?",
+            "joke6":"Why do Java programmers wear glasses?"
+        };
+        let btn = document.body.firstElementChild;
+        btn.addEventListener('click',(e)=>{
+            console.time(e.type);
+            // console.log(Object.keys(obj).length);
+            let min = 0,max = Object.keys(obj).length;
+            let index = Math.floor(Math.random()*max);
+            alert(`Joke of the Click\n\t${Object.values(obj)[index]}`);
+            console.timeEnd(e.type);
+        })
+    </script>
+</body>
+</html>
