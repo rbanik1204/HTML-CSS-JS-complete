@@ -1,1 +1,1 @@
-console.log("Hello from"+window.location.href);
+console.log("Hello from "+window.location.href);
