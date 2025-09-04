@@ -30,16 +30,16 @@
 
 
 console.log("Start of Promise2");
-let myPromise = new Promise(function(_myResolve,myReject){
-    setTimeout(()=>{
+let myPromise = new Promise(function (_myResolve, myReject) {
+    setTimeout(() => {
         console.log("Promise is rejected!");
         myReject(new Error("Promise is rejected due to some errors"));
         console.log(myPromise);
-    },5000);
+    }, 5000);
 })
 console.log("End of Promise 2");
-myPromise.then((value)=>{
+myPromise.then((value) => {
     console.log(value);
-},(error)=>{
-    console.log(error.name,":",error.message);
+}, (error) => {
+    console.log(error.name, ":", error.message);
 })
