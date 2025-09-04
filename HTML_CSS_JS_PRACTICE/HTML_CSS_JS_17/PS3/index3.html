@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLOCK</title>
+    <style>
+        #clock{
+            width:20vw;
+            height:20vh;
+            margin:5rem auto;
+            background-color: aqua;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <p style="text-align: center;font-size: 30px;">What time it is?</p>
+    <script>
+        let elem = document.getElementsByTagName("p")[0];
+        let para = document.createElement("p");
+        // let atr = para.createAttribute("class"); This doesnt work for classes
+        para.className="Local-Time";
+        para.id = "clock"
+        elem.after(para);
+        setInterval(()=>{
+            let d = new Date();
+            para.innerHTML = d.toLocaleTimeString();
+        },500);
+    </script>
+</body>
+</html>
