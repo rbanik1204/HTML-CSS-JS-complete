@@ -8,17 +8,17 @@
 <body>
     <form id="myForm" action="none">
         <label for="username">Enter username:
-        <input type="text" placeholder="username"name="username" title="username" id="username" autocomplete="new-password">
+        <input type="text" name="username" placeholder="username"name="username" title="username" id="username" autocomplete="new-password">
         </label>
         <label for="password">Password:
-            <input type="password" id="password" title="password" id="password" autocomplete>
+            <input name="password"type="password" id="password" title="password" id="password" autocomplete="on">
         </label>
     </form>
     <button type="submit">Login</button>
     <button type="button">Register</button>
     <script>
         let form = document.getElementById("myForm");
-        form.addEventListener('click',(e) =>{
+        form.addEventListener('input',(e) =>{
             if(e.target.name === "username"){
                 console.log(e.target.tagName," Changed to:",e.target.value);
             }
