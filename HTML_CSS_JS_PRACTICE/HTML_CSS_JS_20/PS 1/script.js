@@ -1,12 +1,14 @@
 function loadScript(src,callBack){
     // console.log(src);
-    console.log("Let's see when this works\n");
-    return myPromise = new Promise(function(myResolve,myReject){
-        // console.log("Buggified")
+    console.log("Let's see when this works");
+    let myPromise;
+    myPromise = new Promise(function(myResolve,myReject){
     let script = document.createElement("script");
     script.src = src;
+    console.log(myPromise);//This gives undefined because assignment occurs after Promise constructor execution
     // console.log(script.src,"Error!");
     script.onload = (e)=>{
+        console.log(myPromise);
         console.log(src," has Successfully loaded");
         myResolve(true);
         console.log(myPromise);
@@ -18,6 +20,7 @@ function loadScript(src,callBack){
     }
     document.head.appendChild(script);
 });
+    return myPromise;
 }
 function checkPromise(error,script){
     console.log("Hello from checkPromise function");
@@ -26,9 +29,10 @@ function checkPromise(error,script){
         console.log(script.src," can't be fetched!");
         return;
     }
-    console.log(script+" Executed Successfully");
+    console.log(script.tagName.toUpperCase+" Executed Successfully");
 }
 let loaded = loadScript("script2.js",checkPromise);
+loaded.then((value)=>{console.log(value)})
 loaded.catch((error)=>{
     console.log(error.name);
 })
