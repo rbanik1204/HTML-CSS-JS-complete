@@ -7,8 +7,11 @@ let myPromise = new Promise((myResolve,_myReject)=>{
 myPromise.then((value)=>{
     let p1 = new Promise((myResolve,_myReject)=>{
         setTimeout(()=>{
-        console.log("This line Will be Written after 2 Secs");
-         return myResolve(value);
+        console.log("This line Will be Written after 4 Secs");
+        myResolve(value);
     },2000)
     })
-}).then()
+    return p1;
+}).then((value)=>{
+    console.log(value);
+})
