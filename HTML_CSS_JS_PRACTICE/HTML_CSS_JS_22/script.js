@@ -39,8 +39,9 @@ let p3 = new Promise((resolve, reject) => {
 // }).then((value)=>{
 //      console.log(value);
 // })
-let promise_all = Promise.race([p1, p2, p3])// ---> returns a promise
-//let promise_all = Promise.allSettled([p1, p2, p3])// ---> returns a promise
+let promise_all = Promise.any([p1, p2, p3])// ---> returns a promise with resolved value (not rejected) at first
+//let promise_all = Promise.race([p1, p2, p3])// ---> returns a promise which takes least time 
+//let promise_all = Promise.allSettled([p1, p2, p3])// ---> returns a promise whether a promise has reject value doesnt affect the array of values
 // console.log(promise_all);
 // promise_all.then((values)=>{
 //     values.forEach((value)=>{
