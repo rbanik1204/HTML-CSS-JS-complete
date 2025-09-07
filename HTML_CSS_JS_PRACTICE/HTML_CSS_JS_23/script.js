@@ -2,7 +2,7 @@
 //     return 7;
 // }
 // myPromise().then((value)=>alert(value));
-async function weather() {
+let weather = async ()=>  {
     let bengalWeather = new Promise((resolve,reject)=>{
         setTimeout(()=>{
             resolve("27 Degrees");
@@ -20,10 +20,19 @@ async function weather() {
     let delhiW =  await delhiWeather;
     return [bengalW,delhiW]; 
 }
+let cherry = async ()=>{
+    console.log("This will be executed after weather function")
+}
+async function main(){
 console.log("Welcome to weather house");
-weather().then(values=>values.forEach((element,index)=>{
+let w = await weather(); // weather() returns the Promise but await fetches the the resolved value
+let c = await cherry();
+
+w.forEach((element,index)=>{
     if (index == 0)
         console.log("Fetching Bengal Weather status:"+ element);
     else
         console.log("Fetching Delhi Weather:"+ element);
-}))
+})
+}
+main()
