@@ -28,7 +28,7 @@
 // })
 
 
-/*
+
 console.log("Start of Promise2");
 let myPromise = new Promise(function (_myResolve, myReject) {
     setTimeout(() => {
@@ -43,6 +43,6 @@ myPromise.then((value) => {
 }, (error) => {
     console.log(error.name, ":", error.message);
 })
-    */
-let promise = new Promise(resolve=>setTimeout(()=>resolve("done")))
-promise.then(alert);//gives alert "done" so it takes the value of resolve GOT IT!!!
+    
+// let promise = new Promise(resolve=>setTimeout(()=>resolve("done")))
+// promise.then(alert);//gives alert "done" so it takes the value of resolve GOT IT!!!

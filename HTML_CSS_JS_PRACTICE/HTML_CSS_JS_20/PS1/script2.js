@@ -1,0 +1,1 @@
+console.log("Successfully loaded: "+window.location.pathname);
