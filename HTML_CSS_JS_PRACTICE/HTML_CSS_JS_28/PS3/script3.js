@@ -1,14 +1,17 @@
-let options =  {
+const createTodo = async (src) => {
+  let options = {
     method: 'POST',
-    headers:{
-        'content-type':'application/json;charset=UTF-8'
+    headers: {
+      'content-type': 'application/json;charset=UTF-8'
     },
     body: JSON.stringify({
-    title: 'foo',
-    body: 'bar',
-    userId: 1,
-  })
+      title: 'foo',
+      body: 'bar',
+      userId: 1,
+    })
+  }
+  let myPromise = await fetch(src, options)
+  return await myPromise.json()
 }
-fetch('https://jsonplaceholder.typicode.com/posts',options)
-    .then(res=>res.json())
-    .then(data=>console.log(data))
+let response = createTodo('https://jsonplaceholder.typicode.com/posts')
+    .then(data => console.log(data))
