@@ -1,4 +1,4 @@
-const apiKey = "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";
+const apiKey =;
 let elem = document.getElementsByTagName('pre')[0];
 const chatGPT = async () => {
     await fetch("https://api.openai.com/v1/chat/completions", {
