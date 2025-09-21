@@ -1,4 +1,3 @@
-const apiKey =;
 let elem = document.getElementsByTagName('pre')[0];
 const chatGPT = async () => {
     await fetch("https://api.openai.com/v1/chat/completions", {
