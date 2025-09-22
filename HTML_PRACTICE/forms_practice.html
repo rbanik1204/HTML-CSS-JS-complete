@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMS</title>
+    <meta name="keywords" description="">
+    <meta name="description" content="">
+    <!-- <meta http-equiv="refresh"content=""> -->
+</head>
+<body>
+    <h1>Html Forms</h1>
+    <form action="backend.php">
+        <div>
+            Name: <input type="name" name="username"placeholder="Enter your Name" required>
+        </div>
+        <br>
+        <div>
+            Roll : <input type="number" name="userroll" placeholder="Enter your Roll">
+        </div>
+        <br>
+        <div>
+            Email: <input type="text" name="usermail" placeholder="Enter your Email" autofocus>
+        </div>
+        <br>
+        <div>
+            Date: <input type="date" name="userdate">
+        </div>
+        <br>
+        <div>
+            Bonus: <input type="number" name="mybonus">
+        </div>
+        <br>
+        <div>
+            Eligiblity: <input type="checkbox" name ="usereligiblity">
+        </div>
+        <br>
+        <div>
+            Gender:Male<input type="radio" name="userGender">
+                   Female<input type="radio" name="userGender">
+        </div>
+        <br>
+        Write about yourself
+        <div>
+            <textarea type="text" cols="30" rows = "10"placeholder="Enter about yourself"></textarea>
+        </div>
+        <br>
+        <div>
+        <label for="Car">Car</label>
+        <select name="myCar" id="Car">
+            <option value="ind">Indica</option>
+            <option value="swf">Swift</option>
+        </select>
+        </div>
+        <br>
+        <div>
+            <input type="submit" value="submit Now!">
+            <input type="reset" value="Reset Now!">
+        </div>
+    </form>
+    <details>
+        <summary>
+            This is my practice html form
+        </summary>
+        Hola
+    </details>
+</body>
+</html>

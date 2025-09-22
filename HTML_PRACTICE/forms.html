@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Forms</title>
+    <link rel="icon" href="images/images.ico">
+    <meta charset = "UTF-8">
+    <meta name="keyword" description="name,roll,class">
+    <meta name="description" content="anything">
+    <!-- <meta http-equiv="refresh" content="4"> -->
+</head>
+    <h2 class="head">This is a form </h2>
+    <form action="backend.php">
+    <div>
+        <label for="myname">Name:</label>
+        <input type ="text" name="myname"id="myname">
+    </div>
+    <br>
+    <div>
+        <label for="EMAIL:">Email:</label>
+        <input type="email"name="Email" id="EMAIL"placeholder="Enter Email">
+    </div>
+    <br>
+    <div>
+        <label for="location">Location:</label>
+        <input type="location" name="location" id="location" placeholder="location">
+    </div>
+    <br>
+    <div>
+        <label for="date-time">Date:</label>
+        <input type="datetime-local" name="datetime" id="date-time">
+    </div>
+    <br>
+    <div>
+        Are you eligible:<input type="checkbox" name="myeligibility">
+    </div>
+    <br>
+    <div>
+        Gender:Male<input type="radio" name="mygender">
+               Female<input type="radio" name="mygender">
+               Prefer not to say<input type="radio" name="mygender">
+    </div>
+    <br>
+    <div>
+        Preferable Bonus:<input type="number" name="Bonus">
+    </div>
+    <br>
+    <div>
+        <label for="mytext">write about yourself:</label>
+        <textarea name="mytext" cols="20" rows="10" placeholder="Write about yourself..."></textarea>
+    </div>
+    <br>
+    <div>
+        <label for="car">Car:</label>
+        <select name="mycar" id="car">
+            <option value="bug">Bugatti</option>
+            <option value="Koe">Koenisegg</option>
+        </select>
+    </div>
+    <br>
+    <div>
+        <input type="reset" value="Reset Now">
+    </div>
+    <br>
+    <div>
+        <input type="submit" value="Submit Now">
+    </div>
+    </form>
+</html>
