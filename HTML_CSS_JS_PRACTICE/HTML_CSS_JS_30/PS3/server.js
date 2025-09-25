@@ -8,7 +8,7 @@ const server = http.createServer((req,res)=>{
         res.setHeader('X-Powered-By','Node.js')
         res.writeHead(200,{
             'cache-control':'no-cache,no-store,must-revalidate',
-            "Access-Control-Allow-Origin":'*',
+            "Access-Control-Allow-Origin":'http://127.0.0.1:3000',
             "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
             'set-cookie':'sessionId=abc123;username=ratul;HttpOnly',
             'Access-Control-Allow-Headers': 'Content-Type,user-agent,x-client-header',
@@ -26,6 +26,6 @@ const server = http.createServer((req,res)=>{
         res.end(JSON.stringify({ message: 'Not Found' }));
     }
     })
-server.listen(5000,'localhost',()=>{
+server.listen(5000,()=>{
         console.log("Server running at http://localhost:5000/Home");
 })
