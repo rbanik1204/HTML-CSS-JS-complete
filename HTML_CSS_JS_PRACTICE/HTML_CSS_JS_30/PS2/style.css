@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    width:100vw;
+    height:100vh;
+    background-color: antiquewhite;
+}
+.container {
+    color:aqua;
+    width:30vw;
+    height:40vh;
+    border:2px solid black;
+    border-radius: 10px;
+    margin:calc(50vh - 100px) auto 0 auto;
+    padding:1em;
+    box-sizing: border-box;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+}
+#button:first-child{
+    display:block;
+    width:8vw;
+    height:5vh;
+    margin:auto; 
+    border-radius: 10px;
+    border-color: turquoise;
+    font-weight: 600;
+    font-size: 1vw;
+    overflow: hidden;
+}
+/* .container b {
+    display: block;
+    width: 100%;
+    text-align: center;
+} */
