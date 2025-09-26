@@ -14,7 +14,7 @@ const FetchData = async (src)=>{
         for (let [key,value] of res.headers.entries()){
             console.log(key,":",value);
         }
-        console.log('The cookies sent from the HTTP server:\n'+document.cookie);
+        console.log('The cookies sent from the HTTP server:\n'+res.headers.get('Set-Cookie'));
         const data = await res.json();
         return data;
     })
