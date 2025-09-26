@@ -3,11 +3,11 @@ const FetchData = async (src)=>{
         method:'GET',
         credentials:'include',
         headers:{
-            'user-agent':'abc1234',
-            'X-Client-Header':'Hello from client side'
+            'user-agent':'CustomValue',
+            'X-Client-Header':'ratul'
         }
     })
-    .then((res)=>{
+    .then(async (res)=>{
         console.log("Response Header (Content-Type):", res.headers.get("content-type"));
         console.log("Response Header(X-Server-Header):",res.headers.get('X-Server-Header'));
         // Printing all response headers
@@ -15,12 +15,17 @@ const FetchData = async (src)=>{
             console.log(key,":",value);
         }
         console.log('The cookies sent from the HTTP server:\n'+document.cookie);
-        res.json();
-        return res;
+        const data = await res.json();
+        return data;
     })
 }
 async function main(src){
-    const data = await FetchData(src);
-    console.log("This is the response received from Server:",data.message);
+    const data = await FetchData(src)
+       if (data) {
+        console.log("This is the response received from Server:", data.message);
+    } else {
+        console.log("Failed to fetch or parse response.");
+    }
 }
-main('http://localhost:5000/Home');
+
+main('http://localhost:3000/Home');
