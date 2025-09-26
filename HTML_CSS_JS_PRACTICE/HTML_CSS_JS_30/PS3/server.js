@@ -14,7 +14,7 @@ const server = http.createServer((req, res) => {
     }
     else if (req.method === "GET" && req.url === "/Home") {
         res.setHeader('Content-Type', 'application/json');
-        res.setHeader('X-Server-Header', 'HelloFromServer')
+        res.setHeader('X-Server-Header', 'Hello-From-Server')
         res.setHeader('X-Powered-By', 'Node.js')
         res.setHeader('Set-Cookie', [
             'sessionId=abc123; SameSite=None;Secure;',
@@ -26,9 +26,9 @@ const server = http.createServer((req, res) => {
             "Access-Control-Allow-Origin": 'http://127.0.0.1:3000',
             //'set-cookie': 'sessionId=abc123;username=ratul;name=Ratul;sameSite=None;',/// Giving null But why????
             "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-            'Access-Control-Allow-Headers': 'Content-Type,user-agent,x-client-header',
+            // 'Access-Control-Allow-Headers': 'Content-Type,user-agent,x-client-header',
             'Access-Control-Allow-Credentials': 'true',
-            'Access-Control-Expose-Headers': 'X-Server-Header'
+            'Access-Control-Expose-Headers': 'X-Server-Header,Set-Cookie'
         })
         res.end(JSON.stringify({ message: 'Server Running!' }))
     }
