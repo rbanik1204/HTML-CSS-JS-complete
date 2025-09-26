@@ -17,9 +17,9 @@ const server = http.createServer((req, res) => {
         res.setHeader('X-Server-Header', 'HelloFromServer')
         res.setHeader('X-Powered-By', 'Node.js')
         res.setHeader('Set-Cookie', [
-            'sessionId=abc123; SameSite=None;',
-            'username=ratul; SameSite=None;',
-            'name=Ratul; SameSite=None;'
+            'sessionId=abc123; SameSite=None;Secure;',
+            'username=ratul; SameSite=None;Secure;',
+            'name=Ratul; SameSite=None;Secure;'
         ]);
         res.writeHead(200, {
             'cache-control': 'no-cache,no-store,must-revalidate',
