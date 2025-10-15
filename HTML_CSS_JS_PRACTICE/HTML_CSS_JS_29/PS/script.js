@@ -6,7 +6,7 @@ const weather = async (url)=>{
     .then(data=>console.log(data))
 }
 async function main(){
-    let Url = 'https://goweather.xyz/weather/Berlin';
+    let Url = 'https://api.weather.gov/openapi.json';
     // let URL =  url+prompt("Enter City");
     return weather(Url);
 }
