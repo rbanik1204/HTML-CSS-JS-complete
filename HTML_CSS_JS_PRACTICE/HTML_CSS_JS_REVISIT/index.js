@@ -1,1 +1,1 @@
-console.log('I\'m back Brother')
+console.log('Sample js code');
