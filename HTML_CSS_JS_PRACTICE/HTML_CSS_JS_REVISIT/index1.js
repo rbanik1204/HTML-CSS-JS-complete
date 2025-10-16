@@ -6,4 +6,5 @@ let friend = 'Aditya'
 console.log(friend.concat(nam));
 let str = new String("Hello world");
 let val = str.valueOf();
+
 console.log(val);
