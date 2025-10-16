@@ -1,4 +1,3 @@
-
 const weather = async (url)=>{
     await fetch(url,{
         method:'GET'
@@ -7,7 +6,7 @@ const weather = async (url)=>{
     .then(data=>console.log(data))
 }
 async function main(){
-    let Url = 'https://api.weather.gov/openapi.json';
+    let Url = 'https://goweather.xyz/weather/Berlin';
     // let URL =  url+prompt("Enter City");
     return weather(Url);
 }

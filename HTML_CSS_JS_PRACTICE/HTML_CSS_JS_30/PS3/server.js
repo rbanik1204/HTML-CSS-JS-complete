@@ -19,7 +19,10 @@ const server = http.createServer((req, res) => {
         res.setHeader('Set-Cookie', [
             'sessionId=abc123; SameSite=None;Secure;',
             'username=abc123; SameSite=None;Secure;',
-            'name=abc123; SameSite=None;Secure;'
+            'name=abc123; SameSite=None;Secure;',
+            'sessionId=abc123; SameSite=Lax',
+            'username=ratul; SameSite=Lax',
+            'name=Ratul; SameSite=Lax'
         ]);
         res.writeHead(200, {
             'cache-control': 'no-cache,no-store,must-revalidate',
