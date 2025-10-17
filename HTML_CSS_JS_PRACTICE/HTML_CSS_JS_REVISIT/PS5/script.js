@@ -16,5 +16,6 @@ elem.addEventListener('click',loadDoc)
 function responseDoc(xhttp){
     console.log(xhttp.responseText)
     elem.innerHTML = `<pre>${xhttp.responseText}</pre>`
-    console.log(xhttp.getResponseHeader("content-type"));
+    console.log(xhttp.getAllResponseHeaders());
+    //Cross-Origin-Resource-Policy:cross-origin   --->This allows other domains to request or use the resource of generated response
 }
