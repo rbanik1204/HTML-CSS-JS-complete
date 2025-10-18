@@ -1,4 +1,3 @@
-// const apiKey = "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"
  let elem = document.getElementsByTagName('pre')[0];
 const chatGPT = async (msg) => {
     try{

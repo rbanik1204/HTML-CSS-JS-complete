@@ -1,15 +1,16 @@
 const fetchData = async(src)=>{
+    return new Promise((resolve,reject)=>{
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
         console.log('Current Ready State:'+this.readyState);
     }
     xhr.open('GET',src,true);
     xhr.onload = ()=>{
-        return xhr.response;
+        console.log('HTTP response state:'+xhr.statusText);
     }
     xhr.send();
-}
-async function main(){
+})};
+async function main(src){
     const data = await fetchData(src);
     console.log(data);
 }
