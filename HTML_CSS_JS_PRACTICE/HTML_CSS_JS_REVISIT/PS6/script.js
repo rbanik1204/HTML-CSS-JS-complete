@@ -7,6 +7,9 @@ const fetchData = async(src)=>{
     xhr.open('GET',src,true);
     xhr.onload = ()=>{
         console.log('HTTP response state:'+xhr.statusText);
+        resolve(xhr.response);
+        if(xhr.status != 200)
+            reject(new Error("Bad Gateway!"));
     }
     xhr.send();
 })};
