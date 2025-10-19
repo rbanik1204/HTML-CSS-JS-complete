@@ -1,4 +1,4 @@
 AJAX is the dream of developers since
-1) It loads the response to webpage without reloading It\n
-2) Send data to webServer\n
-3) Update the webpage without loading it Again\n
+1) It loads the response to webpage without reloading It
+2) Send data to webServer
+3) Update the webpage without loading it Again
