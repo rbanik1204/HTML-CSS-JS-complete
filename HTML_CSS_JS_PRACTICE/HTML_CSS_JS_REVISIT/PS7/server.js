@@ -1,14 +1,30 @@
-const http = require('http');
-const server =http.createServer((req,res)=>{
+const http = require("http");
+
+//Create Server
+
+const server = http.createServer((req,res)=>{
+    if(req.method==='OPTIONS'){
+        res.writeHead(204,{
+            "Access-Control-Allow-Origin":'http://127.0.0.1:3000',
+            "Access-Control-Allow-Credentials":true,
+            "Access-Control-Allow-Headers":'X-client-header',
+            "Access-Control-Allow-Methods": "GET, POST, OPTIONS"
+        })
+        return res.end();
+    }
+    console.log(`The request header (X-Client-Header):${req.headers['x-client-header']}`); // always small letters in .headers[]
     res.writeHead(200,{
-        'access-control-allow-origin':'http://localhost:3000/',
-        'access-control-allow-credentials':true,
-        'cross-origin-resource-Policy':'cross-origin',
-        'content-type':req.headers['content-type'] || 'text/plain'
-    });
-    res.end(`Hello from ${req.url}`);
-});
-const PORT = 5000;
-server.listen(PORT,'localhost',()=>{
-    console.log('Server running at http://localhost:5000/')
+        "Access-Control-Allow-Origin":'http://127.0.0.1:3000',
+        "Access-Control-Allow-Credentials":true,
+        "Content-Type":"Application/json",
+        "Access-Control-Expose-Headers": "X-User-Agent",
+        "X-User-Agent":"Ratul",
+        "Set-Cookie": "myCookie=hello; Path=/;SameSite=Lax"
+    })
+    // console.log(req.headers.cookie);
+    res.end(JSON.stringify("Hello from server"));
+})
+const PORT = 8000
+server.listen(PORT,()=>{
+    console.log('Server listening at http://127.0.0.1:3000/index.html');
 })
