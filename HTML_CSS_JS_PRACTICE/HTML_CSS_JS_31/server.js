@@ -9,7 +9,7 @@ const server = http.createServer((req,res)=>{
     console.log("New request received from "+req.url);
     const Url = req.url;
     const myUrl = url.parse(Url,true);
-    console.log("Query params"+myUrl.query);
+    console.log(myUrl.query.user);
     console.log(myUrl);
     var log = `${Date.now()}: New Request from ${Url}\n`
     //Multi route
