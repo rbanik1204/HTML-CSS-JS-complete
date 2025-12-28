@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#outer{
+    width:30vw;
+    height:30vh;
+    margin:30vh auto;
+    background-color: aqua;
+    border-radius: 10px;
+    display:flex;
+}
