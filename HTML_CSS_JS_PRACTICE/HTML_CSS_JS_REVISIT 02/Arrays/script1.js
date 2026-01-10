@@ -16,6 +16,11 @@ console.log(p1.name + p1.age)
 console.log([1, 2, 3] instanceof Object)
 console.log(typeof Array(5)); //Initializes empty array of size 5
 //Array constructors methods 
-const arr = Array(5)
-arr+= [1,2,3]
+let arr = Array(5).fill(null);
+arr = arr.concat([1, 2, 3])
+console.log(arr)
+arr.splice(0,5);
+console.log(arr);
+arr.reverse()
+arr.sort()
 console.log(arr);
