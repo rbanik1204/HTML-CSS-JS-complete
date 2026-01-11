@@ -25,7 +25,10 @@ let array = [1,2,3,4,5];
 
 
 //Function Invocation
-const sum=(arr)=>{
-    return arr.reduce((a,b)=>a+b)
-}
-console.log(sum(array))
+// const sum=(arr)=>{
+//     return arr.reduce((a,b)=>a+b)
+// }
+// console.log(sum(array))
+
+// const sum = arr=> arr.reduce((a,b)=>a+b)
+// console.log(sum(array))//Arrow functions according to ES6+
