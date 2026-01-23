@@ -4,9 +4,10 @@ btn.addEventListener('click',(e)=>{
     xhttp.onload= (e)=>{
         btn.parentElement.innerText = xhttp.responseText
         console.log(xhttp.statusText)
-        console.log(xhttp.getResponseHeader('Content-type')) //null   
+        console.log(xhttp.getResponseHeader('content-type')) //null
+        console.log(xhttp.getAllResponseHeaders())   
     }
     xhttp.open('GET','ajax.txt',true)
-    xhttp.setRequestHeader('Content-Type','text/plain')
+    // xhttp.setRequestHeader('Content-Type','text/plain') -> Unnecessary since it is required for POST requests
     xhttp.send()
 })
