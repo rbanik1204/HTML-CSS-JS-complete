@@ -7,4 +7,4 @@ try {
     console.log(error.message);
     console.log(error.stack);
 }
-console.log("This script is still running!")
+console.log("This script is still run!")
