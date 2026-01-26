@@ -25,5 +25,5 @@ btn.addEventListener('click',async (event)=>{
     //------------------It returns a Promise that resolves to the body string-----------------------------------
     let response = await myData.json();
     console.log(response)
-    btn.parentElement.innerHTML = `${response}`
+    // btn.parentElement.innerHTML = `<pre>${JSON.stringify(response, null, 2)}</pre>`
 })
