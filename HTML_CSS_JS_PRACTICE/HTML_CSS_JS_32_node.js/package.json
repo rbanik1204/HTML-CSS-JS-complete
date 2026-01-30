@@ -1,0 +1,11 @@
+{
+  "name": "html_css_js_32_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "node script.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
