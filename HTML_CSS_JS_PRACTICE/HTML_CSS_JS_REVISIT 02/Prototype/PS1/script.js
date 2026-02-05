@@ -13,14 +13,14 @@
 // console.log(String.prototype)
 // console.log(fname.__proto__ === String.prototype)
 //------------------------------Prototypal Inheritance-------------------------------
-let p1 = {
-    xp1: "Hello from p1",
-}
-let p2 = {
-    xp2: "Hello from p2",
-    __proto__ : p1,
-}
-let p3 = {
-    x3: "Hello from p3",
-    __proto__ : p2,
-}
+// let p1 = {
+//     xp1: "Hello from p1",
+// }
+// let p2 = {
+//     xp2: "Hello from p2",
+//     __proto__ : p1,
+// }
+// let p3 = {
+//     xp3: "Hello from p3",
+//     __proto__ : p2,
+// }
