@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Internal CSS</title>
     <style>
+        /* universal selector  */
+        * {
+            margin: 0;
+            padding: 0;
+        }
         /* element selector */
         h1 {
             background-color: red;
@@ -12,14 +17,43 @@
         /* child selector */
         div >article {
             color:rebeccapurple;/*  applies to inner all tags remember */
+            font-size: 20px;
+            background-color: aqua;
         }
-
+        /* Descendent selector  */
+        div p {
+            background-color: yellowgreen;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        /* pseudo selector  */
+        a:visited {
+            color:red;
+        }
+        a:link {
+            color:aqua;
+        }
+        a:active {
+            background-color: red;
+        }
+        a:hover {
+            background-color: yellow;
+        }
     </style>
 </head>
 <body>
     <h1 id="head">Internal CSS</h1>
     <div class="main">
-    <article><p id="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil veniam amet vero dicta? Aliquid, error facilis tempore mollitia sed unde? Optio aut dignissimos cumque at fugiat. Tempora neque maxime autem, explicabo vero cupiditate reiciendis, ex ea beatae iste illum eum omnis cumque voluptatibus. Vitae quam iusto nemo ex id officiis doloribus, totam atque quae adipisci odio dolorum! Ex dolore deleniti aspernatur qui vel quasi nulla eum asperiores unde magni veritatis pariatur in at, accusantium sunt ducimus, rem porro sequi, nam placeat reprehenderit ad impedit modi aut! Dolorum non porro, corrupti eaque voluptas suscipit, rem fugit laboriosam consequatur provident repellendus eius magni incidunt culpa unde facere sapiente exercitationem aliquam adipisci. Eos possimus soluta vero, voluptate numquam, unde saepe, sunt molestias dicta assumenda adipisci quidem.</p></article>
+    <article>Hello i'm an article! inside main class and im going to be coloured using inline css</article>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim maxime quos accusantium.</p>
+    </div>
+    <div class="main2">
+        <p id="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil veniam amet vero dicta? Aliquid, error facilis tempore mollitia sed unde? Optio aut dignissimos cumque at fugiat. Tempora neque maxime autem, explicabo vero cupiditate reiciendis, ex ea beatae iste illum eum omnis cumque voluptatibus. Vitae quam iusto nemo ex id officiis doloribus, totam atque quae adipisci odio dolorum! Ex dolore deleniti aspernatur qui vel quasi nulla eum asperiores unde magni veritatis pariatur in at, accusantium sunt ducimus, rem porro sequi, nam placeat reprehenderit ad impedit modi aut! Dolorum non porro, corrupti eaque voluptas suscipit, rem fugit laboriosam consequatur provident repellendus eius magni incidunt culpa unde facere sapiente exercitationem aliquam adipisci. Eos possimus soluta vero, voluptate numquam, unde saepe, sunt molestias dicta assumenda adipisci quidem.</p>
+    </div>
+    <div>
+        <ul>
+            <li><a href="https://www.google.com">Go to Google</a></li>
+            <li><a href="https://www.facebook3.com">Go to facebook</a></li>
+        </ul>
     </div>
 </body>
 </html>
