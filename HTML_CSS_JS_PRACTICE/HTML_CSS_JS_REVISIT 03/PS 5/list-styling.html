@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Styles</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .box > ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            gap:10px;
+            color:inherit;
+            text-decoration:none;
+           /* list-style-position: inside; */
+           background-color: antiquewhite;
+           /* list-style-image: ; */
+           border:2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <nav class="box">
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/help">Help</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
