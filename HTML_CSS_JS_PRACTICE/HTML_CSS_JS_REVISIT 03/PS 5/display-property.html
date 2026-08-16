@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Display Property</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing:border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .box {
+            font-size: 18px;
+            font-weight: 600;
+            width:40vw;
+            height:40vh;
+            border: 2px solid red;
+            margin:0 auto 0 auto;
+        }
+        .box1 {
+            /* display:none; */
+            /* visibility: hidden;   only hides the box but the space taken exists!*/
+        }
+    </style>
+</head>
+<body>
+    <div class="box box1">
+        <p class="child">
+            I am inside child class !
+        </p>
+    </div>
+</body>
+</html>
