@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outlines & Shadows</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .box {
+            border : 2px solid red;
+            width:40vw;
+            height:40vh;
+            background:aqua;
+            margin :100px auto 0 auto;
+            text-align: center;
+            padding-top:30px;
+            font-weight: 600;
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px 5px #70a111;
+        }
+        .box > p {
+            border:2px solid red;
+            width:50%;
+            height:50%;
+            margin:20px auto 0 auto;
+            padding:10px;
+            text-shadow:5px 5px 5px red;
+            border-radius: 15px;
+            }
+    </style>
+</head>
+<body>
+    <div class="box">
+        I am a Box
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus consequatur fugiat reprehenderit.
+        </p>
+    </div>
+</body>
+</html>
