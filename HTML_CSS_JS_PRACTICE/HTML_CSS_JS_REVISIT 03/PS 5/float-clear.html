@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float & clear</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .parent {
+            width:100vw;
+            height:auto;
+        }
+        .child {
+             width:100%;
+            border:2px solid red;
+            }
+
+        .child:first-child img {
+            width:30vw;
+            height:30vh;
+            margin:5px;
+            float:left;
+            border:none;
+            object-fit:cover;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child">
+            <img src="../NavBar/background.jpg" alt="">
+        </div>
+        <div class="child">Lorem ipsum dolor am ex quidem corporis quibusdam. Quo sunt veritatis ea suscipit eaque fuga temporibus quaerat explicabo minima deleniti, error veniam minus exercitationem! </div>
+        <div class="child">child 3</div>
+    </div>
+</body>
+</html>
