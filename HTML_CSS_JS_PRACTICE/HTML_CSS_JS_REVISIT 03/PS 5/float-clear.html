@@ -14,7 +14,7 @@
             width:100vw;
             height:auto;
         }
-        .child {
+        .child:not(:nth-child(1)) {
              width:100%;
             border:2px solid red;
             }
@@ -24,7 +24,6 @@
             height:30vh;
             margin:5px;
             float:left;
-            border:none;
             object-fit:cover;
             border-radius: 15px;
         }

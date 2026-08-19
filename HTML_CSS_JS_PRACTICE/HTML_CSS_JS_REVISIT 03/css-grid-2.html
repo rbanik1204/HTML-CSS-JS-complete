@@ -16,9 +16,12 @@
             grid-template-areas: "nav nav"
                                   "article1 article2"
                                   "footer footer";
+            justify-items:center;
+            align-items:center;
+            justify-content:center;
         }
         .item{
-            /* width:30px; */
+            width:30px;
             height:30px;
             border: 2px solid red;
         }
@@ -26,7 +29,7 @@
             grid-area:nav;
         }
         .item-2{
-            grid:article1;
+            grid-area:article1;
         }
         .item-3{
             grid-area:article2;
