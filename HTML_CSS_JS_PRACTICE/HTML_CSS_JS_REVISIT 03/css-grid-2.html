@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grids</title>
+    <style>
+        .container {
+            width:100vw;
+            height:auto;
+            border:2px solid black;
+            overflow:auto;
+            display:grid;
+            grid-template-columns: [first-c]120px [second-c]100px;
+            grid-template-rows:[a]100px [b]120px [c]100px;
+            grid-template-areas: "nav nav"
+                                  "article1 article2"
+                                  "footer footer";
+        }
+        .item{
+            /* width:30px; */
+            height:30px;
+            border: 2px solid red;
+        }
+        .item-1{
+            grid-area:nav;
+        }
+        .item-2{
+            grid:article1;
+        }
+        .item-3{
+            grid-area:article2;
+        }
+        .item-4{
+            grid-area:footer
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+    </div>
+</body>
+</html>
