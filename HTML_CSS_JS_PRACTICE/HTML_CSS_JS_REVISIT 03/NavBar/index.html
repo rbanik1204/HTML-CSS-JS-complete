@@ -68,10 +68,16 @@
        }
        .navbar-toggle {
         display:none;
+        width:50px;
+        height:50px;
         background:transparent;
         padding:10px;
-        border:transparent;
+        border: 3px solid white;
+        /* border:transparent; */
         cursor:pointer;
+        position: relative;
+        align-items: center;
+        
        }
        .bar {
         display:block;
@@ -103,6 +109,23 @@
             display:block;
             z-index: 999;
         }
+        .navbar-toggle.active .span1{
+            margin:auto;
+            transform: translateY(1.7px) rotate(45deg);
+        }
+        .navbar-toggle.active .span2{
+            display:none;
+        }
+        .navbar-toggle.active .span3{
+            margin:auto;
+            transform: translateY(-0.6px) rotate(-45deg);
+        }
+        .bar {
+            transition: transform cubic-bezier(0, 0.53, 1, 1) 0.3s;
+        }
+        .navbar-menu.active {
+            display: none;
+        }
        }
     </style>
 </head>
@@ -111,11 +134,11 @@
         <div class="navbar-container">
             <a href="index.html" class="navbar-logo">firstNAV</a>
             <button class="navbar-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <span class="bar span1"></span>
+                <span class="bar span2"></span>
+                <span class="bar span3"></span>
             </button>
-            <ul class="navbar-menu">
+            <ul class="navbar-menu active">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Service</a></li>
@@ -124,5 +147,13 @@
             </ul>
         </div>
     </nav>
+    <script>
+        const button = document.querySelector(".navbar-toggle");
+        const navMenu = document.querySelector(".navbar-menu")
+        button.addEventListener('click',() => {
+            button.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        })
+    </script>
 </body>
 </html>
