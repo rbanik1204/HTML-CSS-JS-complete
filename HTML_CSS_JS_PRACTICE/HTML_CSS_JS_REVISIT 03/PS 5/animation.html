@@ -28,18 +28,18 @@
             background-color: red;
             bottom:0px;
             left:0px;
-            animation-name: bounce;
-            animation-duration: 5s;
-            animation-iteration-count: infinite;
-            animation-direction: reverse;
+            animation: bounce-x 10s ease-out alternate infinite;
         }
-        @keyframes bounce{
+        @keyframes bounce-x{
             0% {
-                transform:translateX(0px) translateY(0px)
+                transform: translateX(0px) translateY(0px);
             }
-            /* 30% {
-                transform: translateX(200px) translateY(0px);
-            } */
+            20%{
+                transform: translateX(calc(10.5vw - 100%)) translateY(-200px);
+            }
+            40% {
+                transform: translateX(calc(20.5vw) - 100%) translateY(+200px);
+            }
 
         }
     </style>
