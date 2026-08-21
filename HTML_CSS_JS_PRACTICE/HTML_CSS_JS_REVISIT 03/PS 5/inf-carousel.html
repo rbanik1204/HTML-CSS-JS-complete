@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Carousel | CSS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .carousel {
+            width: 80vw;
+            height: auto;
+            margin: 30vh auto;
+            border:3px solid blue;
+            overflow: hidden;
+            display:flex;
+            column-gap: 1rem;
+        }
+
+        .group {
+            flex:0 0 max-content;
+            display: flex;
+            overflow-x: auto;
+            column-gap:1rem;
+            animation: rotate 5s linear infinite;
+        }
+
+        
+        .child {
+            flex: 0 0 30vw;
+            height: 30vh;
+            background: url('https://www.freecodecamp.org/news/html-background-image-how-to-add-wallpaper-images-to-your-website/') no-repeat center;
+            background-size: cover;
+            border-radius:15px;
+            padding:5px;
+        }
+        
+        .group::-webkit-scrollbar {
+            display: none;
+        }
+        @keyframes rotate {
+            from {
+                translate: 0%
+            }
+
+            to {
+                translate: -100%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <div class="group">
+            <div class="child">1</div>
+            <div class="child">2</div>
+            <div class="child">3</div>
+            <div class="child">4</div>
+            <div class="child">5</div>
+        </div>
+        <div class="group">
+            <div class="child">1</div>
+            <div class="child">2</div>
+            <div class="child">3</div>
+            <div class="child">4</div>
+            <div class="child">5</div>
+        </div>
+    </div>
+</body>
+
+</html>
