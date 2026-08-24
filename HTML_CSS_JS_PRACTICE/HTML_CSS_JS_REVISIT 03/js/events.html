@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event handlers</title>
+</head>
+<body>
+    <div class="container"><button type="button" style="width: 100px; height: 100px; font-size: 18px;">Click me!</button>
+</div>
+<script>
+    let btn = document.getElementsByClassName('container')[0].firstElementChild;
+    btn.addEventListener('click',(event)=>{
+        console.log(event.clientX,event.clientY,event.target,event.type,event.currentTarget)
+    })
+</script>
+</body>
+</html>
