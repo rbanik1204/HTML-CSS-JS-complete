@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            font-size: 2rem;
+        }
+        body {
+            background-color: aliceblue;
+        }
+        .flip-card{
+            position:relative;
+            display:inline-flex;
+            flex-direction: column;
+            border-radius: 0.1em;
+            box-shadow:0 3px 4px 0 rgba(0, 0, 0, 0.8);
+        }
+        :is(.top,.bottom){
+            height:0.75em;
+            line-height:1;
+            padding:0.25em;
+            overflow:hidden;
+        }
+        .flip-card,.flip-card::before,.top {
+            background-color: #3bd5e0;
+            border-top-left-radius: .1em;
+            border-top-right-radius: .1em;
+        }
+        .bottom {
+            background-color: rgb(62, 189, 178);
+            display: flex;
+            align-items: flex-end;
+            border-bottom-left-radius: .1em;
+            border-bottom-right-radius: .1em;
+        }
+        .flip-card::before{
+            content:"5";
+            /* top:0; */
+            position: absolute;
+            padding-top: 0.25em;
+            line-height: 1;
+            height:35%;
+            width:100%;
+            text-align:center;
+            overflow: hidden;
+            animation: flip-down 1000ms ease-in;
+        }
+        @keyframes flip-down {
+            100%{
+                transform:rotateX(90deg);
+            }
+        }
+        /* .flip-card::after{
+            
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="flip-card">
+        <div class="top">5</div>
+        <div class="bottom">5</div>
+    </div>
+
+</body>
+
+</html>
