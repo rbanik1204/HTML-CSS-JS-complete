@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout & setInterval</title>
+</head>
+<body>
+    <h1 align="center">setTimeout & setInterval</h1>
+    <div class="container">
+
+    </div>
+    <script>
+        let div = document.getElementsByClassName('container')[0];
+        let [a,b] = [3,4]
+        let sum = (a,b)=>{
+            // div.insertAdjacentHTML("afterbegin",`<b>sum of a and b: ${a+b}<b>`);
+                alert(`sum of a and b: ${a+b}`)
+        }
+        // let t_id = setTimeout(sum,5000,3,5)
+        let t_id = setInterval(sum,5000,++a,++b) // Arguments evaluated only once hence will not be changed ! Remains 4 & 5 . Though it is unnecessary i know!
+    </script>
+</body>
+</html>
