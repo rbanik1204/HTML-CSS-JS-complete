@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Table Navigations</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
 <body>
@@ -41,7 +42,37 @@
         </tbody>
     </table>
     <script>
-        console.log
+        let table = document.body.children[1];
+        console.log(table.rows[0]) //This will give thead row element
+        console.log(table.tHead.rows[0].sectionRowIndex)
+        console.log(table.tBodies[0].rows[2].sectionRowIndex)
+        console.log(table.tBodies[0].rows[1].cells[1].cellIndex)
+        console.log(table.tBodies[0].rows[1].cells[1].firstChild.data) //textContent
+        console.log(typeof table.tBodies[0].rows[1].cells[1])
+        console.log(table.tBodies[0].rows[1].cells[1] instanceof Node)
+        console.log(table.tBodies[0].rows[1].cells[1].nodeType);
+
+        let caption = table.createCaption();
+        caption.textContent = "This is a caption!";
+        caption.style.textAlign = "center";
+        caption.style.fontSize = "20px";
+        caption.style.color = "red";
+        caption.style.fontWeight="600";
+        caption.style.captionSide = "top";
+
+
+        let tfoot = table.createTFoot();
+        let row = tfoot.insertRow();
+        let cell1 = document.createElement("th");
+        row.appendChild(cell1);
+        let cell2 = row.insertCell();
+        let cell3 = row.insertCell();
+        let cell4 = row.insertCell();
+        cell1.textContent = "4"
+        cell2.textContent = "elordi"
+        cell3.textContent = "the molly"
+        cell4.textContent = "@mdn"
+        cell1.setAttribute("scope", "row")
     </script>
 </body>
 
