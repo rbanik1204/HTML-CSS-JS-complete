@@ -1,6 +1,6 @@
 const fs = require("fs").promises;
 const http = require("http");
-const { URL } = require("url"); //WHATWG API and it is WHATWG URL class for legacy it is URL property of Node's url module
+const { URL } = require("url"); //WHATWG API and it is WHATWG URL class & for legacy it is URL property of Node's url module
 
 
 function writeToLog() {
@@ -12,7 +12,7 @@ function writeToLog() {
         try {
 
             const editLog =
-                `${Date.now()}: ${parsedURL.pathname} new Request received!\n`;
+                `${new Date().toLocaleString()}: ${parsedURL.pathname} new Request received!\n`;
 
             await fs.appendFile("edit.log", editLog, "utf8");
 
@@ -30,6 +30,13 @@ function writeToLog() {
 
             case "/about":
                 res.end("Hi! I'm ratul banik");
+                break;
+            case "/signup":
+                if(req.method === "GET") res.end("This is a sign up form")
+                else if(req.method === "POST"){
+                    //DB query
+                    res.end("success!");
+                }
                 break;
             default:
                 res.statusCode = 404;
