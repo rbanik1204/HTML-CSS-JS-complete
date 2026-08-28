@@ -1,9 +1,9 @@
 const fs = require("fs").promises;
 const http = require("http");
 const { URL } = require("url"); //WHATWG API and it is WHATWG URL class & for legacy it is URL property of Node's url module
+const express = require('express')
 
-
-async function writeToLog(req, res) {
+function writeToLog(req, res) {
     console.log(req.url)
     const parsedURL = new URL(req.url, "http://[::1]:3000")//WHATWG API
     //const parsedURL = URL.parse(req.url,true) is the legacy URL parser
@@ -12,7 +12,7 @@ async function writeToLog(req, res) {
         const editLog =
             `${new Date().toLocaleString()}: ${parsedURL.pathname} new Request received!\n`;
 
-        await fs.appendFile("edit.log", editLog, "utf8");
+        fs.appendFile("edit.log", editLog, "utf8");
 
     } catch (err) {
 
