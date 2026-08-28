@@ -3,50 +3,46 @@ const http = require("http");
 const { URL } = require("url"); //WHATWG API and it is WHATWG URL class & for legacy it is URL property of Node's url module
 
 
-function writeToLog() {
+async function writeToLog(req, res) {
+    console.log(req.url)
+    const parsedURL = new URL(req.url, "http://[::1]:3000")//WHATWG API
+    //const parsedURL = URL.parse(req.url,true) is the legacy URL parser
+    try {
 
-    const server = http.createServer(async (req, res) => {
-        console.log(req.url)
-        const parsedURL = new URL(req.url, "http://[::1]:3000")//WHATWG API
-        //const parsedURL = URL.parse(req.url,true) is the legacy URL parser
-        try {
+        const editLog =
+            `${new Date().toLocaleString()}: ${parsedURL.pathname} new Request received!\n`;
 
-            const editLog =
-                `${new Date().toLocaleString()}: ${parsedURL.pathname} new Request received!\n`;
+        await fs.appendFile("edit.log", editLog, "utf8");
 
-            await fs.appendFile("edit.log", editLog, "utf8");
+    } catch (err) {
 
-        } catch (err) {
+        console.log(err);
 
-            console.log(err);
+    }
 
-        }
+    switch (parsedURL.pathname) {
 
-        switch (parsedURL.pathname) {
+        case "/":
+            res.end("Home page");
+            break;
 
-            case "/":
-                res.end("Home page");
-                break;
-
-            case "/about":
-                res.end("Hi! I'm ratul banik");
-                break;
-            case "/signup":
-                if(req.method === "GET") res.end("This is a sign up form")
-                else if(req.method === "POST"){
-                    //DB query
-                    res.end("success!");
-                }
-                break;
-            default:
-                res.statusCode = 404;
-                res.end(`${res.statusCode} requested resource not found!`);
-        }
-    });
-
-    server.listen(3000, "localhost", () => {
-        console.log("server running on PORT 3000");
-    });
+        case "/about":
+            res.end("Hi! I'm ratul banik");
+            break;
+        case "/signup":
+            if (req.method === "GET") res.end("This is a sign up form")
+            else if (req.method === "POST") {
+                //DB query
+                res.end("success!");
+            }
+            break;
+        default:
+            res.statusCode = 404;
+            res.end(`${res.statusCode} requested resource not found!`);
+    }
 }
+const server = http.createServer(writeToLog)
 
-writeToLog();
+server.listen(3000, "localhost", () => {
+    console.log("server running on PORT 3000");
+});
