@@ -2,7 +2,13 @@ const fs = require("fs").promises;
 const http = require("http");
 const { URL } = require("url"); //WHATWG API and it is WHATWG URL class & for legacy it is URL property of Node's url module
 const express = require('express')
-
+const app = express();
+app.get("/",(req,res)=>{
+    return res.send("Hello from From Home Page")
+})
+app.get("/about",(req,res)=>{
+    return res.end("Hello from About Page" )
+})
 function writeToLog(req, res) {
     console.log(req.url)
     const parsedURL = new URL(req.url, "http://[::1]:3000")//WHATWG API
@@ -41,8 +47,11 @@ function writeToLog(req, res) {
             res.end(`${res.statusCode} requested resource not found!`);
     }
 }
-const server = http.createServer(writeToLog)
+// const server = http.createServer(app)
 
-server.listen(3000, "localhost", () => {
-    console.log("server running on PORT 3000");
-});
+// server.listen(3000, "localhost", () => {
+//     console.log("server running on PORT 3000");
+// });
+app.listen(3000,"localhost",()=>{
+    console.log("Server Started!")
+})
