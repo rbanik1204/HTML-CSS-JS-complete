@@ -28,3 +28,5 @@ push, pop, shift, unshift, splice, sort, reverse
 /* 
 filter,reduce,slice,concat,flat,find,some,every
 */
+
+//Constructor methods are from of isArray and Array

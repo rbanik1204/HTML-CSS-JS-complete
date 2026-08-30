@@ -12,7 +12,7 @@ const server = http.createServer((req, res) => {
             "Access-Control-Allow-Methods": "POST",
             "Access-Control-Allow-Headers": "Content-Type"
         });
-        res.end();
+        res.end(204);
         return;
     }
     let body = "";

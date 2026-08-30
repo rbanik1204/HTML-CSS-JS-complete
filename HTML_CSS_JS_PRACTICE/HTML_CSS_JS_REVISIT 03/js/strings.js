@@ -18,4 +18,14 @@ str.startsWith("")
 str.endsWith("")
 str.indexOf("String")
 str.includes("String")
+
+however it uses the process of boxing that is the termporary
+wrapping of primitive Strings into  String Object
+"hello"
+--\
+--\
+--temporary String wrapper
+--String.prototype
+--Object.prototype
+--null
 */

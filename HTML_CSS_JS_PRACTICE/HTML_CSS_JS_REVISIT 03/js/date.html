@@ -21,7 +21,7 @@
         }
 
         .container {
-            width: min(50vw, 100%);
+            width: min(60vw, 100%);
             height: clamp(30vh, 300px, 50vh);
             /* background-color: aqua; */
             margin: 30vh auto;
@@ -41,12 +41,13 @@
             /* transition: transform 0.5s ease; */
         }
 
-        :is(.hours, .minutes, .seconds) {
+        :is(.hours, .minutes) {
             width: 100%;
             height: 100%;
             display: grid;
             place-items: center;
             overflow: hidden;
+            grid-template-columns:80% 20%;
         }
 
         .hours {
@@ -55,10 +56,11 @@
 
         .minutes {
             grid-area: minutes;
-            /* background-color: red; */
         }
-        .hours span:last-child {
-            display: none;
+        span:last-child:not(.seconds>span) {
+            /* display:none; */
+            position:relative;
+            top:-0.7rem;
         }
         .seconds {
             grid-area: seconds;

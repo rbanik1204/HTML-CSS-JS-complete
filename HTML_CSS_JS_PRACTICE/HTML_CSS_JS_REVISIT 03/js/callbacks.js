@@ -11,9 +11,9 @@ function loadScript(src, callBack) {
     let script = document.createElement("script");
     // script.type = module; //ESM Module
     script.src = src;
-    script.onload = (script) => {
+    script.onload = (event) => {
         // console.log(`${script.src} successfully downloaded but not executed!`)
-        callBack(null, script)
+        callBack(null, event.target)
     };
     script.onerror = (script) => callBack(new Error(`${script.src} got some error`));
     document.head.appendChild(script);

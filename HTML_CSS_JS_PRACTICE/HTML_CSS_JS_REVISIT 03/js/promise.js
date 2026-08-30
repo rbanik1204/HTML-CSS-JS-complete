@@ -12,7 +12,7 @@ const loadScript = (src) => {
         document.head.appendChild(Script);
     })
 }
-loadScript("log.js").then((value) => {
+loadScript("script3.js").then((value) => {
     console.log(`${value.src} appended successfully!`)
 }, (err) => {
     console.log("Error:"+err.message)

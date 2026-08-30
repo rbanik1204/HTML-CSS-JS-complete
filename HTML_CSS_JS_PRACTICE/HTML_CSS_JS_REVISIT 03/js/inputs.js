@@ -1,5 +1,5 @@
-//import promptSync from  'prompt-sync';
-const promptSync = require('prompt-sync');
+//import promptSync from  'prompt-sync';//ESM
+const promptSync = require('prompt-sync');//Cjs 
 const prompt = promptSync();
 
 const name = prompt("Write your name & title in comma separated values: ");

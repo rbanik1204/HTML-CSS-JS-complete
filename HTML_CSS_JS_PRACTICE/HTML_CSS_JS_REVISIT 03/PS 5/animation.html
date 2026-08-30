@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,43 +11,94 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         .parent {
-            position:relative;
-            width:50vw;
-            height:50vh;
-            margin:100px auto;
+            position: relative;
+            width: 50vw;
+            height: 50vh;
+            margin: 100px auto;
             background-color: aquamarine;
             border: 2px solid red;
             border-radius: 10px;
-            box-shadow: 15px 1px 15px 5px red;
+            /* box-shadow: 15px 1px 15px 5px red; */
+            animation: rotateglow 10s ease-in-out reverse infinite;
         }
+
         .ball {
-            position:absolute;
-            width:50px;
-            height:50px;
+            position: absolute;
+            width: 50px;
+            height: 50px;
             border-radius: 100%;
             background-color: red;
-            bottom:0px;
-            left:0px;
-            animation: bounce-x 10s ease-out alternate infinite;
+            bottom: 0px;
+            left: 0px;
+            animation: bounce 15s ease-in alternate infinite;
         }
-        @keyframes bounce-x{
+
+        @keyframes bounce {
             0% {
                 transform: translateX(0px) translateY(0px);
             }
-            20%{
+
+            20% {
                 transform: translateX(calc(10.5vw - 100%)) translateY(-200px);
             }
+
             40% {
-                transform: translateX(calc(20.5vw) - 100%) translateY(+200px);
+                transform: translateX(calc(20.5vw - 100%)) translateY(0px);
             }
 
+            60% {
+                transform: translateX(calc(30.5vw - 100%)) translateY(-200px);
+            }
+
+            80% {
+                transform: translateX(calc(40.5vw - 100%)) translateY(0px);
+            }
+
+            100% {
+                transform: translateX(calc(49.5vw - 100%)) translateY(-200px);
+            }
+        }
+
+        @keyframes rotateglow {
+            0% {
+                box-shadow:
+                    0 0 20px 15px rgba(132, 255, 122, 0.7),
+                    20px 0 40px rgba(132, 255, 122, 0.7);
+            }
+
+            25% {
+                box-shadow:
+                    0 0 20px 15px rgba(60, 167, 50, 0.5),
+                    -20px 0 20px 15px rgba(83, 187, 170, 0.5);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 25px 15px rgba(50, 120, 255, 0.7),
+                    0 20px 40px rgba(50, 120, 255, 0.7);
+            }
+
+            75% {
+                box-shadow:
+                    0 0 20px 15px rgba(180, 60, 255, 0.5),
+                    20px 0 20px 15px rgba(180, 60, 255, 0.5);
+            }
+
+            100% {
+                box-shadow:
+                    0 0 20px 15px rgba(132, 255, 122, 0.7),
+                    20px 0 40px rgba(132, 255, 122, 0.7);
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="parent">
         <div class="ball"></div>
     </div>
 </body>
+
 </html>

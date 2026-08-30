@@ -12,8 +12,9 @@ form.addEventListener("submit",(event)=>{
             if (event.target.status === 200) {
                 document.getElementById("message").innerHTML =
                     event.target.responseText;
-                    event.target.style.color="white";
+                    document.getElementById("message").style.color="white"
                 console.log(event.target.responseText)
+                console.log(xhttp.getResponseHeader("Content-Type"))
             } else {
                 document.getElementById("message").innerHTML =
                     `HTTP error: ${event.target.status}`;
