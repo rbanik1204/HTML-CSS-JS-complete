@@ -12,8 +12,19 @@ const getUsers = (req, res) => {
     </ul>`
     res.send(html)
 };
+const getUser = (req,res,next)=>{
+    const userID = Number(req.params.id);
+    const userIndex = users.findIndex(usr=>usr.id === userID)
+    if (userIndex === -1) {
+        const error = new Error("Resource not found")
+        error.code = 404
+        return next(error)
+    }
+    return res.status(200).send(users[userIndex]);  
+}
 const createUser = (req, res, next) => {
     const user = { ...req.body, id: users.length + 1 }
+    console.log("BODY: ",+req.body)
     if (!user.first_name || !user.last_name || !user.email || !user.id || !user.gender || !user.ip_address) {
         const error = new Error("Unprocessable Entity")
         error.code = 422
@@ -69,5 +80,5 @@ const updateUser = (req, res, next) => {
     })
 };
 module.exports = {
-    getUsers, createUser, updateUser, deleteUser
+    getUsers, getUser, createUser, updateUser, deleteUser
 };

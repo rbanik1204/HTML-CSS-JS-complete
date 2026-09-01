@@ -8,7 +8,7 @@ const notFound = require("./middlewares/notFound");
 //Middlewares
 app.use(logger)
 
-
+//Built-in Middlewares
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
