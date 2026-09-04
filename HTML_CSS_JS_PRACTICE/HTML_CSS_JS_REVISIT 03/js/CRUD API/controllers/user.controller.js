@@ -1,38 +1,11 @@
 const fs = require("fs")
 const path = require("path")
 const users = require("../data/MOCK_DATA.json");
-const mongoose = require('mongoose')
+const USER = require("../models/users")
+const {connectMongoDB} = require("../connection")
 
-//Connection to mongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/testDB")
-.then(()=>console.log("MongoDB connected!"))
-.catch((err)=>console.log(err))
-//Schema
-const userSchema = new mongoose.Schema({
-    first_name:{
-        type:String,
-        required: true
-    },
-    last_name:{
-        type:String,
-        require:true
-    },
-    email:{
-        type:String,
-        required:true,
-        uniue:true
-    },
-    gender:{
-        type:String,
-        required:true
-    },
-    ip_address:{
-        type:String,
-        required:true
-    }
-},{timestamps:true})
-const USER = mongoose.model("user",userSchema)
-
+//Connection
+connectMongoDB("mongodb://127.0.0.1:27017/testDB")
 
 const getUsers = async (req, res) => {
     // console.log(req.body)
