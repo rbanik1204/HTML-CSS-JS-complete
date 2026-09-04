@@ -1,15 +1,9 @@
 const fs = require("fs")
 const path = require("path")
 const users = require("../data/MOCK_DATA.json");
-const USER = require("../models/users")
-const {connectMongoDB} = require("../connection")
 
-//Connection
-connectMongoDB("mongodb://127.0.0.1:27017/testDB")
-
-const getUsers = async (req, res) => {
+const getUsers = (req, res) => {
     // console.log(req.body)
-    const users = await USER.find({})
     const html = `
     <ul style="list-style-type: none;">
     ${users.map((user) => {
@@ -18,8 +12,7 @@ const getUsers = async (req, res) => {
     </ul>`
     res.send(html)
 };
-const getUser = async (req,res,next)=>{
-    const users = await USER.find({})
+const getUser = (req,res,next)=>{
     const userID = Number(req.params.id);
     const userIndex = users.findIndex(usr=>usr.id === userID)
     if (userIndex === -1) {
@@ -29,8 +22,7 @@ const getUser = async (req,res,next)=>{
     }
     return res.status(200).send(users[userIndex]);  
 }
-const createUser = async (req, res, next) => {
-    const users = await USER.find({})
+const createUser = (req, res, next) => {
     const user = { ...req.body, id: users.length + 1 }
     console.log("BODY: ",+req.body)
     if (!user.first_name || !user.last_name || !user.email || !user.id || !user.gender || !user.ip_address) {
@@ -38,24 +30,15 @@ const createUser = async (req, res, next) => {
         error.code = 422
         return next(error)
     }
-    // users.push(user)
-    // fs.writeFile("./data/MOCK_DATA.json", JSON.stringify(users), (err) => {
-    //     if (err) {
-    //         err.message = "Internal Server Error"
-    //         err.code = 500
-    //         return next(err)
-    //     }
-    //     return res.status(201).json({ status: "success" })
-    // })
-    const result = await USER.create({
-        first_name:user.first_name,
-        last_name:user.last_name,
-        email:user.email,
-        gender:user.gender,
-        ip_address:user.ip_address
+    users.push(user)
+    fs.writeFile("./data/MOCK_DATA.json", JSON.stringify(users), (err) => {
+        if (err) {
+            err.message = "Internal Server Error"
+            err.code = 500
+            return next(err)
+        }
+        return res.status(201).json({ status: "success" })
     })
-    console.log(result)
-    return res.status(201).json({message:"successful creation of user"})
 };
 const deleteUser = (req, res, next) => {
     const id = Number(req.params.id);
@@ -93,7 +76,7 @@ const updateUser = (req, res, next) => {
             err.code = 500
             return next(err);
         }
-        return res.status(200).json({message:"Successful patching"});
+        return res.status(200).json("Successful patching");
     })
 };
 module.exports = {
