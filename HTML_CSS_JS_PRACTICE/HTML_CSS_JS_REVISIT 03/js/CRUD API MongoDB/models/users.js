@@ -1,0 +1,30 @@
+const mongoose = require('mongoose')
+const userSchema = new mongoose.Schema({
+    firstName:{
+        type:String,
+        required:true
+    },
+    lastname:{
+        type:String,
+        required:true,
+    },
+    email:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    jobTitle:{
+        type:String,
+        required:true
+    },
+    gender:{
+        type:String,
+        enum:{
+            values:["Male","female","prefer not say"]
+        },
+        required:true
+    }
+})
+const users = mongoose.model("user",userSchema)
+console.log("users model has been created successfully!");
+module.exports = users
