@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    lastname:{
+    lastName:{
         type:String,
         required:true,
     },
@@ -25,6 +25,6 @@ const userSchema = new mongoose.Schema({
         required:true
     }
 })
-const users = mongoose.model("user",userSchema)
+const users = mongoose.model("user",userSchema)// compiled constructor class that provides prgramming interface to run CRUD queries it represents the collection as a whole
 console.log("users model has been created successfully!");
 module.exports = users
