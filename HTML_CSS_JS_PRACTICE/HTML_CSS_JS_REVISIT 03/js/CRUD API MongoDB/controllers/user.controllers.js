@@ -102,7 +102,7 @@ const deleteUsers = async (req, res, next) => {
             ids.push(user.id);
         }
         if(ids.length === 0)
-            return res.sendStatus(404).json({message:"users not found"});
+            return res.sendStatus(404)
         await Users.deleteMany(
             {
                 _id: {
@@ -160,6 +160,8 @@ const updateUsers = async (req, res, next) => {
             return res.status(400).json({ message: "requested field " + key + " is invalid" })
     }
     const users = await Users.find(qParams)
+    if(users.length === 0) //dont use users === []
+        return res.sendStatus(404);
     //Request Body validation
     const fieldValues = req.body
     //fields validation
