@@ -13,6 +13,7 @@ const getUsers = async (req, res, next) => {
         return res.status(200).send(html)
     }
     catch (error) {
+        error.statusCode = 500;
         error.code = error.statusCode || 500;
         next(error)
     }
@@ -21,16 +22,18 @@ const getUser = async (req, res, next) => {
     const { id } = req.params;
     //Validating the format of id first
     if (!mongoose.Types.ObjectId.isValid(id))
-        return res.status(400).json({ message: "Invalid ObjectId format structure provided" })
+        return res.status(400).json({ message: "Invalid ObjectId format structure provided, Malformed Id" })
     try {
-        const user = await Users.findById(id)// Mongoose automatically casts valid String into ObjectId in findById and find
+        const user = await Users.findById(id)// MongooseDocument | null -> Mongoose automatically casts valid String into ObjectId in findById and find
         //However findById returns a single Mongoose instance hence indexing property accession possible and if no user then returns null
-        // In case of find , it returns an array . If no user exists , returns empty array
+        // In case of find ,Array<MongooseDocument>  it returns an array . If no user exists , returns empty array
+        
         if (!user)
-            return res.status(400).json({ message: "User not found" })
+            return res.status(404).json({ message: "User not found" })
         return res.status(200).json({ message: "users retrieved successfully" ,body:user})
     }
     catch (error) {
+        error.statusCode = 500;
         error.code = error.statusCode || 500;
         next(error)
     }
@@ -38,17 +41,19 @@ const getUser = async (req, res, next) => {
 const createUsers = async (req, res, next) => {
     try {
         await Users.insertMany(req.body) //compiled class constructor of which insertMany is an interface method
+       // const user = await Users.create(req.body) i could have done it as well
         const users = await Users.find()
             .sort({ _id: -1 })
             .limit(5);
-        if(users.length === 0)
-            return res.status(204).json({message:"No content in retrievd Array of Mongoose Instances"})
+        if(users.length === 0)//checking whether insertion worked
+            return res.sendStatus(204)
         return res.status(201).json({
             message: "successful creation of " + req.body.length + " documents",
             body: users //must return mongoose instance or object 
         })
     }
     catch (error) {
+        error.statusCode = 500;
         error.code = error.statusCode || 500;
         next(error)
     }
@@ -56,13 +61,14 @@ const createUsers = async (req, res, next) => {
 const createUser = async (req, res, next) => {
     try {
         await Users.create(req.body) //any Mongoose constructor accepts native js objects only (or array of objects)
-        const user = await Users.find().sort({ _id: -1 }).limit(1)
+        const user = await Users.find().sort({ _id: -1 }).limit(1)//Just for the practice using methods 
         res.status(201).json({
             message: "successful creation query!",
             body: user
         })//stringifies it and sends the response to client
     }
     catch (error) {
+        error.statusCode = 500;
         error.code = error.statusCode || 500;
         next(error)
     }
@@ -75,12 +81,13 @@ const deleteUser = async (req, res, next) => {
     try {
         const user = await Users.findById(id);
         if (!user)
-            return res.status(400).json({ message: "user not found" });
-        await Users.deleteOne(user);
-        if (!Users.findById(id))
-            return res.status(204).json({ message: "Successful deletion No content" })
+            return res.status(404).json({ message: "user not found" });
+        await Users.deleteOne({_id:user._id}); //Expects a filter
+        if (await Users.findById(id) == null)
+            return res.sendStatus(204);
     }
     catch (error) {
+        error.statusCode = 500;
         error.code = error.statusCode || 500;
         next(error)
     }
@@ -94,6 +101,8 @@ const deleteUsers = async (req, res, next) => {
             // id+=user.id this is wrong will cast it to String and concatenate from there onwards
             ids.push(user.id);
         }
+        if(ids.length === 0)
+            return res.sendStatus(404).json({message:"users not found"});
         await Users.deleteMany(
             {
                 _id: {
@@ -101,9 +110,10 @@ const deleteUsers = async (req, res, next) => {
                 }
             }
         )
-        return res.status(204).json({userIds:ids,message:"Instances deleted successfully"})
+        return res.sendStatus(204);
     }
     catch (error) {
+        error.statusCode = 500;
         error.code = error.statusCode || 500;
         next(error)
     }
@@ -125,7 +135,7 @@ const updateUser = async (req, res, next) => {
     try {
         const updatedUser = await Users.findOneAndUpdate(
             { _id: id }, {
-            $set: properties
+            $set: fields
         }, {
             new: true
             , runValidators: true
@@ -156,16 +166,17 @@ const updateUsers = async (req, res, next) => {
     for (const field of Object.keys(fieldValues)) {//do not use forEach Loop
         const isValidField = Users.schema.path(field) !== undefined;
         if (!isValidField)
-            return res.status(400).json({ message: "requested field " + key + " is invalid" })
+            return res.status(400).json({ message: "requested field " + field + " is invalid" })
     }
     try {
         for (const user of users) {
-            Object.assign(user, fieldValues)
+            Object.assign(user, fieldValues)//we can use updateMany() as well 
             await user.save();  // Save each updated user document back to the database
         }
         return res.status(200).json({ message: "users updated successfully", fields: fieldValues, body: users })
     }
     catch (error) {
+        error.statusCode = 500;
         error.code = error.statusCode || 500;
         next(error)
     }
