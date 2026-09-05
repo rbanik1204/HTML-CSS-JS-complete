@@ -2,7 +2,8 @@ const express = require('express')
 const {getUsers, createUsers} = require("../controllers/user.controllers")
 const router = express.Router();
 
-router("api/users")
+router
+    .route("/api/users")
     .get(getUsers)
     .post(createUsers)
 

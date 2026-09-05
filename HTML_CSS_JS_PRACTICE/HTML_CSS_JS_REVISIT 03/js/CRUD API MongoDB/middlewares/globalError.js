@@ -3,3 +3,4 @@ const globalError = (err, req, res, next) => {
        return res.send(err.message)
     return res.send("Internal Server Error")
 }
+module.exports = globalError
