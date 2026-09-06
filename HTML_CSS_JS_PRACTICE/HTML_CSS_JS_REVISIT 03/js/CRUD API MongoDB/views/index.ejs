@@ -8,10 +8,37 @@
         body {
             min-width: (1000px,100%);
             min-height:100vh;
+            background: url("../../../PS 5/image.png") no-repeat center;
+            background-size: cover;
+            /* background: linear-gradient(to right, #ffc500, #c21500); */
+            overflow-y: hidden;
+        }
+        .main {
+            position:relative;
+            width:40vw;
+            height:clamp(20vh,40vh,45vh);
+            margin-left:auto;
+            margin-right:auto;
+            margin-top: 200px;
+            border-radius: 2rem;
+            backdrop-filter: blur(10px);
+            border:2px solid rgba(255,255,255,0.4);
+            display:flex;
+            justify-content: center;
+        }
+        p {
+            font-size: 2.3em;
+            position:absolute;
+            top:-0.7em;
+            font-weight: 600;
+            color: aliceblue;
+            word-wrap: break-word;
         }
     </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
+    <div class="main">
+        <p>Sign in</p>
+    </div>
 </body>
 </html>
