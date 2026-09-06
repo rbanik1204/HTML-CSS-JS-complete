@@ -1,5 +1,7 @@
 const logger = (req,res,next)=>{
-    console.log(`${req.method} ${req.path}`)
+    if(req.path !== "/favicon.ico")
+        console.log(`${req.method} ${req.path}`)
+
     next();
 }
 

@@ -5,7 +5,7 @@ const app = express()
 const userRoutes = require("./routes/user.routes");
 
 const logger = require("./middlewares/logger");
-const globalError = require('./middlewares/globalError')
+const {globalError} = require('./middlewares/globalError')
 
 
 //Built-in Middlewares - Used for parsing from network pipelines
@@ -16,10 +16,11 @@ app.use(express.urlencoded({ extended: false }))
 app.use(logger)
 
 connectMongoDB("mongodb://127.0.0.1:27017/users");
-
+//Routes
 app.use("/",userRoutes)
 
 
 app.use(globalError)
 
 module.exports = app
+

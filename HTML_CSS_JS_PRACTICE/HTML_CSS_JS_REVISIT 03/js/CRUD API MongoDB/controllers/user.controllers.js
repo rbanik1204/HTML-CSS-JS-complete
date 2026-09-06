@@ -14,7 +14,6 @@ const getUsers = async (req, res, next) => {
     }
     catch (error) {
         error.statusCode = 500;
-        error.code = error.statusCode || 500;
         next(error)
     }
 }
@@ -26,7 +25,7 @@ const getUser = async (req, res, next) => {
     try {
         const user = await Users.findById(id)// MongooseDocument | null -> Mongoose automatically casts valid String into ObjectId in findById and find
         //However findById returns a single Mongoose instance hence indexing property accession possible and if no user then returns null
-        // In case of find ,Array<MongooseDocument>  it returns an array . If no user exists , returns empty array
+        // In case of find ,Array<MongooseDocument>  it returns an array . If no user exists , returns empty array []
         
         if (!user)
             return res.status(404).json({ message: "User not found" })
@@ -34,17 +33,16 @@ const getUser = async (req, res, next) => {
     }
     catch (error) {
         error.statusCode = 500;
-        error.code = error.statusCode || 500;
         next(error)
     }
 }
 const createUsers = async (req, res, next) => {
     try {
-        await Users.insertMany(req.body) //compiled class constructor of which insertMany is an interface method
+        const users = await Users.insertMany(req.body) //compiled class constructor of which insertMany is an interface method
        // const user = await Users.create(req.body) i could have done it as well
-        const users = await Users.find()
-            .sort({ _id: -1 })
-            .limit(5);
+        // const users = await Users.find()
+        //     .sort({ _id: -1 })
+        //     .limit(5);
         if(users.length === 0)//checking whether insertion worked
             return res.sendStatus(204)
         return res.status(201).json({
@@ -54,7 +52,6 @@ const createUsers = async (req, res, next) => {
     }
     catch (error) {
         error.statusCode = 500;
-        error.code = error.statusCode || 500;
         next(error)
     }
 }
@@ -69,7 +66,6 @@ const createUser = async (req, res, next) => {
     }
     catch (error) {
         error.statusCode = 500;
-        error.code = error.statusCode || 500;
         next(error)
     }
 }
@@ -81,14 +77,14 @@ const deleteUser = async (req, res, next) => {
     try {
         const user = await Users.findById(id);
         if (!user)
-            return res.status(404).json({ message: "user not found" });
-        await Users.deleteOne({_id:user._id}); //Expects a filter
+            return res.sendStatus(404);
+        const deletedDocument = await Users.deleteOne({_id:user._id}); //Expects a filter
+        console.log(deletedDocument)
         if (await Users.findById(id) == null)
             return res.sendStatus(204);
     }
     catch (error) {
         error.statusCode = 500;
-        error.code = error.statusCode || 500;
         next(error)
     }
 }
@@ -99,8 +95,16 @@ const deleteUsers = async (req, res, next) => {
             if (!mongoose.Types.ObjectId.isValid(user.id))
                 continue;
             // id+=user.id this is wrong will cast it to String and concatenate from there onwards
-            ids.push(user.id);
+            //Validation if respective id document is present in collection
+            const usr = await Users.find({_id:user.id})
+            if (usr === null)
+                {
+                    console.log(id+" document is not present");
+                    continue;
+                }
+            ids.unshift(user.id);
         }
+        console.log(ids)
         if(ids.length === 0)
             return res.sendStatus(404)
         await Users.deleteMany(
@@ -114,7 +118,6 @@ const deleteUsers = async (req, res, next) => {
     }
     catch (error) {
         error.statusCode = 500;
-        error.code = error.statusCode || 500;
         next(error)
     }
 }
@@ -137,7 +140,8 @@ const updateUser = async (req, res, next) => {
             { _id: id }, {
             $set: fields
         }, {
-            new: true
+            // new: true
+            returnDocument:"after"
             , runValidators: true
         })
         if (!updatedUser)
@@ -145,7 +149,7 @@ const updateUser = async (req, res, next) => {
         return res.status(200).json({ message: "user " + id + " updated successfully", body: updatedUser })
     }
     catch (error) {
-        error.code = error.statusCode || 500;
+        error.statusCode = 500
         next(error)
     }
 }
@@ -179,7 +183,6 @@ const updateUsers = async (req, res, next) => {
     }
     catch (error) {
         error.statusCode = 500;
-        error.code = error.statusCode || 500;
         next(error)
     }
 }

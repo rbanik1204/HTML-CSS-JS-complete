@@ -1,6 +1,7 @@
 const globalError = (err, req, res, next) => {
-    if(err.statusCode != 500)
-       return res.send(err.message)
-    return res.send("Internal Server Error")
+    console.log(err)
+    return res
+        .status(err.statusCode || 500)
+        .json({message:err.message || "Internal Server Error"})
 }
-module.exports = globalError
+module.exports = { globalError }
