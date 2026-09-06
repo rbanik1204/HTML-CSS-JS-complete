@@ -3,7 +3,7 @@ const { connectMongoDB } = require("./connection")
 const app = express()
 
 const userRoutes = require("./routes/user.routes");
-
+const homeRoutes = require("./routes/home.routes")
 const logger = require("./middlewares/logger");
 const {globalError} = require('./middlewares/globalError')
 
@@ -16,9 +16,10 @@ app.use(express.urlencoded({ extended: false }))
 app.use(logger)
 
 connectMongoDB("mongodb://127.0.0.1:27017/users");
+app.set("view engine","ejs")
 //Routes
-app.use("/",userRoutes)
-
+app.use("/api",userRoutes)
+app.use("/home",homeRoutes)
 
 app.use(globalError)
 

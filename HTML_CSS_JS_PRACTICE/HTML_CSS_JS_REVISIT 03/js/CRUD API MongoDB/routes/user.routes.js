@@ -3,16 +3,16 @@ const {getUsers, createUsers,createUser, getUser, updateUser,updateUsers,deleteU
 const router = express.Router();
 
 router
-    .route("/api/users")
+    .route("/users")
     .get(getUsers)
     .post(createUsers)
     .patch(updateUsers)
     .delete(deleteUsers)
 router
-    .route("/api/user")
+    .route("/user")
     .post(createUser)
 router
-    .route("/api/user/:id")
+    .route("/user/:id")
     .get(getUser)
     .patch(updateUser)
     .delete(deleteUser)
