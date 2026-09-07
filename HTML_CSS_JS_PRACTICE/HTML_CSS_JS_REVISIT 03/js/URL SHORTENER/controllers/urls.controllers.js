@@ -3,15 +3,29 @@ import urlModel from '../models/url.model.js'
 async function handleViewShortId(req,res,next){
     const body = req.body
     const id = shortId(8);
-    const url = req.body.url;
-    if(!url)return res.status(400).json({message:"url is required!"})
+    let url = req.body.url;
+    let redirectUrl = req.body.redirectURL
+    let flag = 0
+    if(!url){
+        url=redirectUrl;flag = 1
+        }
+    else redirectUrl = url
+    console.log(redirectUrl)
+    if(!(url|| redirectUrl))return res.status(400).json({message:"url is required!"})
     const urlInstance = new urlModel({
         shortId : id,
-        redirectUrl:url,
+        redirectUrl:redirectUrl,
         visitHistory:[]
     })
     await urlInstance.save() //Instance method
-    return res.status(201).json({message:"successfully shortened url:"+url})
+    if(!flag)
+        return res.status(201).json({message:"successfully shortened url:"+url,
+            shortenedID:id
+        })
+    else
+        return res.status(201).render('index',{
+            id:id
+        })
 }
 async function handleRedirectUrl(req,res,next){
     const sId = req.params.id //string
@@ -37,5 +51,8 @@ async function handleVisitCount(req,res,next){
         analytics:urlInstance[0].visitHistory
     })
 }
+async function viewAllUrls(req,res,next){
+    const urls = await urlModel.find({}) //returns array of query object
 
+} 
 export { handleViewShortId , handleRedirectUrl, handleVisitCount }
