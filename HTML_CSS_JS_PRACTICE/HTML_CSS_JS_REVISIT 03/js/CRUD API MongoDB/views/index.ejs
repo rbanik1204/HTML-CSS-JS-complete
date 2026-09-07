@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <style>
+        *,*::before,*::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
         body {
             min-width: (1000px,100%);
             min-height:100vh;
@@ -24,21 +30,54 @@
             backdrop-filter: blur(10px);
             border:2px solid rgba(255,255,255,0.4);
             display:flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap:2em;
+            align-items: center;
+            overflow: clip;
         }
         p {
+            padding-top:10px;
             font-size: 2.3em;
-            position:absolute;
-            top:-0.7em;
             font-weight: 600;
             color: aliceblue;
             word-wrap: break-word;
+        }
+        label{
+            margin-top: 20px;
+            font-size: 0.8rem;
+            display: block;
+            font-weight: 500;
+            color:rgba(255, 255, 255, 0.862)
+        }
+        #username,#password {
+            display: block;
+            background-color: inherit;
+            border-top:transparent;
+            height:1em;
+            width:100%;
+            border-left: transparent;
+            border-right: transparent;
+            border-bottom-color: rgb(234, 236, 238);
+        }
+        input:focus{
+            border:transparent;
+        }
+        input:last-child {
+            margin-left:2.3em;
         }
     </style>
 </head>
 <body>
     <div class="main">
-        <p>Sign in</p>
+        <p>Log in</p>
+        <form action="" method="post">
+            <label for="username">username</label>
+            <input type="text" name="username" id="username">
+            <label for="password">password</label>
+            <input type="password" name="password" id="password">
+            <input type="submit" id="Sign in"value="Submit">
+        </form>
     </div>
 </body>
 </html>
