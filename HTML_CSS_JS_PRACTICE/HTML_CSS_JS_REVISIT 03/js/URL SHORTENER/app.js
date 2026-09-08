@@ -11,21 +11,23 @@ import { logger } from './middlewares/logger.js'
 import connectMongoDB from './connection.js'
 import { globalError } from './middlewares/globalError.js'
 connectMongoDB("mongodb://127.0.0.1:27017/url")
-//ESM workout __dirname doesnt exist
+//ESM work around __dirname doesnt exist
 const __filename = fileURLToPath(import.meta.url) //path of the current file that along with app.js
 const __dirname = path.dirname(__filename) //gives the exact path by stripping file name
 
-//serve the public directory
-// app.use(express.static(path.join(__dirname,'public')))//theres no prefix to strip 
-app.set("views",path.join(__dirname,'./views'))//or use .resolve(__dirname,'views')
-//Set template engine (.ejs,.pug,.jade)
-app.set('view engine','ejs')
 
 //Built-in middlewares for request body parsing
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
+
 app.use(logger)
+//serve the public directory
+app.use(express.static(path.join(__dirname,'public')))//theres no prefix to strip 
+app.set("views",path.join(__dirname,'./views'))//or use .resolve(__dirname,'views')
+//Set template engine (.ejs,.pug,.jade)
+app.set('view engine','ejs')
+
 //Routes
 
 app.use('/',staticRouter)

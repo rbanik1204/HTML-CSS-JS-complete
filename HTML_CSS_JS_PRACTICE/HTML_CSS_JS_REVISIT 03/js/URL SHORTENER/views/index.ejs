@@ -1,25 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/style.css">
     <title>Document</title>
 </head>
+
 <body>
     <h1>URL Shortener</h1>
     <div class="main">
         <form action="/url" method="post">
-            <% if (locals.id) { %>
-             <p>URL Generated <a target="_blank" rel="noopener noreferrer">http:[::1]:3000/url/<%=id%></a></p>
-            <% } %>
+
+            <p>
+                <% if (locals.id) { %>URL Generated: http://[::1]:3000/api/url/<%=id%>
+                    <% } %>
+            </p>
+
             <label for="url">Enter your Original URL</label>
             <input type="text" name="redirectURL" id="url">
             <input type="submit" value="Generate">
         </form>
     </div>
     <script>
-        const form = document.querySelector("form")
+        // const form = document.querySelectorAll("form")[0]
+        // const para = document.getElementsByTagName('p')[0]
+
+        // form.addEventListener('submit', async (event) => {
+        //     event.preventDefault();
+        //     const formData = new FormData(form);
+        //     const redirectURL = formData.get('redirectURL')
+        //     const response = await fetch('/url', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({ redirectURL }) //live js obj
+        //     })
+        //     const res = await response.json()
+        //     console.log(res.id)
+        //     const anchor = document.createElement('a');
+        //     anchor.setAttribute("href", `http://[::1]:3000/api/url/${res.id}`)
+        //     anchor.innerText = `click me!`
+        //     para.firstChild.after(anchor)
+        // })
     </script>
 </body>
+
 </html>
