@@ -2,23 +2,40 @@ import shortId from 'shortid';
 import urlModel from '../models/url.model.js'
 async function handleViewShortId(req, res, next) {
     const body = req.body
-    const id = shortId(8);
+    let id = null;
     let redirectUrl = req.body.redirectURL
-    console.log(redirectUrl)
     if (!redirectUrl) return res.status(400).json({ message: "url is required!" })
-    const urlInstance = new urlModel({
-        shortId: id,
-        redirectUrl: redirectUrl,
-        visitHistory: []
-    })
-    await urlInstance.save() //Instance method
-    return res.status(201).render('index',{
+    const instance = await urlModel.findOne({ redirectUrl })
+    if (!instance) {
+        id = shortId(8);
+        var urlInstance = new urlModel({
+            shortId: id,
+            redirectUrl: redirectUrl,
+            visitHistory: []
+        })
+        await urlInstance.save() //Instance method
+    }
+    else {
+        id = instance.shortId;
+        const urlDocument = await urlModel.findOneAndUpdate(
+            {shortId:id},{
+                $push:{
+                    visitHistory:{
+                        timestamp:Date.now()
+                    }
+                }
+            }
+        )
+    }
+    console.log(redirectUrl)
+    const allUrls = await urlModel.find();
+    return res.status(201).json({
         message: "successfully shortened url: " + redirectUrl,
-        id: id
+        id, allUrls
     });//This is one way middleware ->staticRoute->controller(POST)->SSR ejs -> Client
     //side script fetch api-> Middleware -> staticRoute-> controller(POST)-> highjacking the response before SSR ejs receives
     //web fetch api grabbing the response 
-//However theres an easy way as well that is middleware-> controller of POST
+    //However theres an easy way as well that is middleware-> controller of POST
 }
 async function handleRedirectUrl(req, res, next) {
     const sId = req.params.id //string
