@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url' //  Import this built-in utility
 
 import urlRouter from './routes/urls.routes.js'
 import { staticRouter} from './routes/staticUrls.routes.js'
+import { userRouter } from './routes/user.routes.js'
 //External Middlewares
 import { logger } from './middlewares/logger.js'
 //Mongod connection
@@ -29,12 +30,13 @@ app.set("views",path.join(__dirname,'./views'))//or use .resolve(__dirname,'view
 app.set('view engine','ejs')
 
 //Routes
-
-app.use('/',staticRouter)
+app.use('/users',userRouter)
 app.use('/api',urlRouter)
-
 app.use('/analytics',urlRouter)
+app.use('/',staticRouter)
 
 app.use(globalError)
+
+
 //export to server.js
 export default app
