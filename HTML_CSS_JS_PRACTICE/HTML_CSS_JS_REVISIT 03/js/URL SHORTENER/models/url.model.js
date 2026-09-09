@@ -16,7 +16,11 @@ const urlSchema = new mongoose.Schema(
                 type:Number,
                 default:()=>Date.now() //Automatically adds current time on push
             }
-        }]
+        }],
+        createdBy:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"users"
+        }
     },{timestamps: true }
 )
 const urlModel = mongoose.model('url',urlSchema)

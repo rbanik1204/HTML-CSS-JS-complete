@@ -1,5 +1,5 @@
 import express from 'express'
-import { handleViewShortId, handleRedirectUrl, handleVisitCount } from '../controllers/urls.controllers.js'
+import { handleViewShortId, handleRedirectUrl, handleVisitCount, viewAllUrls } from '../controllers/urls.controllers.js'
 const router = express.Router()
 
 router
@@ -8,6 +8,9 @@ router
 router
     .route("/url/:id")
     .get(handleRedirectUrl)
+router
+    .route('/')
+    .get(viewAllUrls)
 router
     .route("/")
     .post(handleViewShortId)

@@ -1,5 +1,6 @@
 import { userModel } from '../models/user.model.js'
-
+import {v4 as uuidv4} from 'uuid'
+import {setId,getId} from '../services/auth.users.js'
 async function  handleUserLogIn (req,res,next){
     try{
     const body = req.body;
@@ -9,12 +10,15 @@ async function  handleUserLogIn (req,res,next){
             {password:body.password}
         ]
     })
-
     if(!user) return res.status(422).render('login',{
         message:"Please sign up with the below link"
         ,url:"signup"
     })
-    return res.render("index")
+    const sessionId = uuidv4()
+    setId(sessionId,user)
+    req.user = user
+    res.cookie("uid", sessionId);
+    return res.redirect("/test")
     }
     catch(error){
         next(error)
@@ -38,9 +42,14 @@ async function handleUserSignIn(req,res,next){
                 url:'http://[::1]/users/login'
             })
         }
-        return res.render('index',{
-            message:"Successfully signed up!"
-        });
+        const sessionId = uuidv4();
+        setId(sessionId,userInstance)
+        console.log("I'm inside user.controller:",getId(sessionId))
+        res.cookie("uid",sessionId)
+        // return res.render('index',{
+        //     message:"Successfully signed up!"
+        // });//Double submit problem
+        return res.redirect('/test')//GET request on /test
     }
     catch(error){
         next(error)

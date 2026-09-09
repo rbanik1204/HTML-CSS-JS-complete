@@ -11,28 +11,32 @@ async function handleViewShortId(req, res, next) {
         var urlInstance = new urlModel({
             shortId: id,
             redirectUrl: redirectUrl,
-            visitHistory: []
+            visitHistory: [],
+            createdBy: req.user._id
         })
         await urlInstance.save() //Instance method
     }
     else {
         id = instance.shortId;
         const urlDocument = await urlModel.findOneAndUpdate(
-            {shortId:id},{
-                $push:{
-                    visitHistory:{
-                        timestamp:Date.now()
-                    }
+            { shortId: id }, {
+            $push: {
+                visitHistory: {
+                    timestamp: Date.now()
                 }
             }
+        }
         )
     }
     console.log(redirectUrl)
-    const allUrls = await urlModel.find();
-    return res.status(201).json({
-        message: "successfully shortened url: " + redirectUrl,
-        id, allUrls
-    });//This is one way middleware ->staticRoute->controller(POST)->SSR ejs -> Client
+    // const allUrls = await urlModel.find();
+    return res.status(201).render('index', {
+        message: "successfully shortened url: " + redirectUrl, id
+    })
+    // return res.status(201).json({
+    //     message: "successfully shortened url: " + redirectUrl,
+    //     id, allUrls
+    // });//This is one way middleware ->staticRoute->controller(POST)->SSR ejs -> Client
     //side script fetch api-> Middleware -> staticRoute-> controller(POST)-> highjacking the response before SSR ejs receives
     //web fetch api grabbing the response 
     //However theres an easy way as well that is middleware-> controller of POST
@@ -62,7 +66,10 @@ async function handleVisitCount(req, res, next) {
     })
 }
 async function viewAllUrls(req, res, next) {
-    const urls = await urlModel.find({}) //returns array of query object
-
+    const topUrl = await urlModel.findOne().sort({ createdAt: -1 })
+    const urls = await urlModel.find({createdBy: req.user._id}) //returns array of query object
+    return res.render('index', {
+        urls,topUrl, id: topUrl.shortId, redirectUrl: topUrl.redirectUrl
+    })
 }
-export { handleViewShortId, handleRedirectUrl, handleVisitCount }
+export { handleViewShortId, handleRedirectUrl, handleVisitCount, viewAllUrls }

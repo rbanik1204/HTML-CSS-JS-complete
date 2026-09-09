@@ -4,6 +4,7 @@ const staticRouter = express.Router();
 staticRouter.get('/test',(req,res,next)=>{
     res.render('index')
 })
+
 staticRouter.post('/url',handleViewShortId)
 
 export { staticRouter }

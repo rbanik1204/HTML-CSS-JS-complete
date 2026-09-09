@@ -2,7 +2,7 @@ import express from 'express' //ESM module
 const app = express()
 import path from 'path'
 import { fileURLToPath } from 'url' //  Import this built-in utility
-
+import cookieParser from 'cookie-parser';
 import urlRouter from './routes/urls.routes.js'
 import { staticRouter} from './routes/staticUrls.routes.js'
 import { userRouter } from './routes/user.routes.js'
@@ -11,6 +11,7 @@ import { logger } from './middlewares/logger.js'
 //Mongod connection
 import connectMongoDB from './connection.js'
 import { globalError } from './middlewares/globalError.js'
+import { restrictToLoggedInUsersOnly } from './middlewares/auth.js'
 connectMongoDB("mongodb://127.0.0.1:27017/url")
 //ESM work around __dirname doesnt exist
 const __filename = fileURLToPath(import.meta.url) //path of the current file that along with app.js
@@ -20,7 +21,7 @@ const __dirname = path.dirname(__filename) //gives the exact path by stripping f
 //Built-in middlewares for request body parsing
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-
+app.use(cookieParser())
 
 app.use(logger)
 //serve the public directory
@@ -29,11 +30,13 @@ app.set("views",path.join(__dirname,'./views'))//or use .resolve(__dirname,'view
 //Set template engine (.ejs,.pug,.jade)
 app.set('view engine','ejs')
 
+// app.use('/url',restrictToLoggedInUsersOnly)
 //Routes
-app.use('/users',userRouter)
 app.use('/api',urlRouter)
+app.use('/users',userRouter)
 app.use('/analytics',urlRouter)
-app.use('/',staticRouter)
+app.use('/home',restrictToLoggedInUsersOnly,urlRouter)
+app.use('/',restrictToLoggedInUsersOnly,staticRouter)
 
 app.use(globalError)
 
