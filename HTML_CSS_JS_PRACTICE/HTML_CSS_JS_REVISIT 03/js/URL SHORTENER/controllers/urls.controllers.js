@@ -1,11 +1,17 @@
 import shortId from 'shortid';
 import urlModel from '../models/url.model.js'
 async function handleViewShortId(req, res, next) {
-    const body = req.body
     let id = null;
     let redirectUrl = req.body.redirectURL
+    let createdBy = req.user._id
     if (!redirectUrl) return res.status(400).json({ message: "url is required!" })
-    const instance = await urlModel.findOne({ redirectUrl })
+    const instance = await urlModel.findOne({
+        $and: [
+            { redirectUrl: redirectUrl },
+            { createdBy: createdBy }
+        ]
+    });
+
     if (!instance) {
         id = shortId(8);
         var urlInstance = new urlModel({
@@ -25,8 +31,7 @@ async function handleViewShortId(req, res, next) {
                     timestamp: Date.now()
                 }
             }
-        }
-        )
+        })
     }
     console.log(redirectUrl)
     // const allUrls = await urlModel.find();
@@ -66,10 +71,11 @@ async function handleVisitCount(req, res, next) {
     })
 }
 async function viewAllUrls(req, res, next) {
-    const topUrl = await urlModel.findOne().sort({ createdAt: -1 })
-    const urls = await urlModel.find({createdBy: req.user._id}) //returns array of query object
+    const topUrl = await urlModel.findOne({createdBy:req.user._id})
+    const urls = await urlModel.find() //returns array of query object check it !!!
+    if (!topUrl) return res.render('index',{topUrl,urls})
     return res.render('index', {
-        urls,topUrl, id: topUrl.shortId, redirectUrl: topUrl.redirectUrl
+        urls, topUrl, id: topUrl.shortId, redirectUrl: topUrl.redirectUrl
     })
 }
 export { handleViewShortId, handleRedirectUrl, handleVisitCount, viewAllUrls }

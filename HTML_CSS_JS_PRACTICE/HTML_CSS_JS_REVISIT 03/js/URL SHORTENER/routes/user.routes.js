@@ -1,5 +1,5 @@
 import express from 'express'
-import {handleUserLogIn, handleUserSignIn} from '../controllers/user.controllers.js'
+import {handleUserLogIn, handleUserSignUp} from '../controllers/user.controllers.js'
 const userRouter = express.Router();
 
 userRouter
@@ -10,6 +10,6 @@ userRouter
         return res.render('signup')
     })
     .post('/login',handleUserLogIn)
-    .post('/signup',handleUserSignIn)
+    .post('/signup',handleUserSignUp)
 
 export { userRouter }

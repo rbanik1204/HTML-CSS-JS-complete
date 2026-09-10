@@ -9,6 +9,9 @@
 
 <body>
     <div class="main">
+         <% if (locals.message) { %>
+         <h1><%=message%></h1>
+        <% } %>
         <form method="post" action="/users/signup">
             <div>
                 <label for="username">Username:</label>
