@@ -8,8 +8,7 @@ async function handleUserLogIn(req, res, next) {
             $and: [{
                 username: body.username
             },
-            { password: body.password }
-            ]
+            { password: body.password }]
         })
         if (!user) return res.status(422).render('login', {
             message: "Please sign up with the below link"
