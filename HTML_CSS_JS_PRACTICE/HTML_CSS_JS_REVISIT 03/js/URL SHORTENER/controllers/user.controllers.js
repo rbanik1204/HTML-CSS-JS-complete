@@ -19,8 +19,10 @@ async function handleUserLogIn(req, res, next) {
         // setUser(sessionId, user)
         const token = setUser(user)
         req.user = user
-        res.cookie("uid", token);
-        return res.redirect("/test")
+        // res.cookie("uid", token);
+        res.setHeader("token",`${token}`)
+        return res.status(201).json({token})
+        // return res.redirect("/test")
     }
     catch (error) {
         next(error)
