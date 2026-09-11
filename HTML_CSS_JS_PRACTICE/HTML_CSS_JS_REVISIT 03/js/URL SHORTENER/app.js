@@ -36,7 +36,7 @@ app.use('/api',urlRouter)
 app.use('/users', userRouter)
 app.use('/analytics',urlRouter)
 app.use('/home',restrictToLoggedInUsersOnly,urlRouter)
-app.use('/',restrictToLoggedInUsersOnly,staticRouter)
+app.use('/',staticRouter)
 
 app.use(globalError)
 
