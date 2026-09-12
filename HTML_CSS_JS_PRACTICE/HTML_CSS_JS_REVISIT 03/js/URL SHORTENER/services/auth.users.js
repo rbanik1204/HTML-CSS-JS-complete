@@ -6,7 +6,7 @@ const secret = "secret1234"
 //     sessionIdToUserMap.set(id,user)
 // }
 function setUser(user){
-    return jwt.sign({id:user._id,email:user.email},secret)
+    return jwt.sign({id:user._id,email:user.email,role:user.role},secret)
 }
 
 function getUser(token){

@@ -19,10 +19,10 @@ async function handleUserLogIn(req, res, next) {
         // setUser(sessionId, user)
         const token = setUser(user)
         req.user = user
-        res.set('token',`${token}`)
+        res.cookie('token',`${token}`)
         console.log(token)
         console.log("token printed from user.controller!")
-        return res.json({token})
+        return res.redirect('/test')
     }
     catch (error) {
         next(error)

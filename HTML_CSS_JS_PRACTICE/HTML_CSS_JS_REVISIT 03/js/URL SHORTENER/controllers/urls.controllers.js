@@ -71,11 +71,18 @@ async function handleVisitCount(req, res, next) {
     })
 }
 async function viewAllUrls(req, res, next) {
+
     const topUrl = await urlModel.findOne({createdBy:req.user._id})
     const urls = await urlModel.find() //returns array of query object check it !!!
     if (!topUrl) return res.render('index',{topUrl,urls})
-    return res.render('index', {
+    if(req.user.role==='ADMIN'){
+        console.log('I am getting executed!')
+        return res.render('index', {
+        urls, topUrl, id: topUrl.shortId, redirectUrl: topUrl.redirectUrl,role:req.user.role})
+    }
+        return res.render('index', {
         urls, topUrl, id: topUrl.shortId, redirectUrl: topUrl.redirectUrl
     })
 }
+
 export { handleViewShortId, handleRedirectUrl, handleVisitCount, viewAllUrls }

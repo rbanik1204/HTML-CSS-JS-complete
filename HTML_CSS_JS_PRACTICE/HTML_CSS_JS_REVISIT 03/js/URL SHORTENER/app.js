@@ -30,13 +30,13 @@ app.set("views",path.join(__dirname,'./views'))//or use .resolve(__dirname,'view
 //Set template engine (.ejs,.pug,.jade)
 app.set('view engine','ejs')
 
-// app.use('/url',restrictToLoggedInUsersOnly)
+app.use(restrictToLoggedInUsersOnly)
 //Routes
 app.use('/api',urlRouter)
 app.use('/users',userRouter)
 app.use('/analytics',urlRouter)
-app.use('/home',restrictToLoggedInUsersOnly,urlRouter)
-app.use('/',restrictToLoggedInUsersOnly,restrictUserTo(["NORMAL"]),staticRouter)
+app.use('/home',urlRouter)
+app.use('/',restrictUserTo(['NORMAL','ADMIN']),staticRouter)
 
 app.use(globalError)
 
