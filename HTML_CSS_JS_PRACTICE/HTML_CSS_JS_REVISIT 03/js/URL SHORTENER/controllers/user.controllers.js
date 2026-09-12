@@ -8,7 +8,8 @@ async function handleUserLogIn(req, res, next) {
             $and: [{
                 username: body.username
             },
-            { password: body.password }]
+            { password: body.password }
+            ]
         })
         if (!user) return res.status(422).render('login', {
             message: "Please sign up with the below link"
@@ -18,10 +19,10 @@ async function handleUserLogIn(req, res, next) {
         // setUser(sessionId, user)
         const token = setUser(user)
         req.user = user
-        // res.cookie("uid", token);
-        res.setHeader("token",`${token}`)
-        return res.status(201).json({token})
-        // return res.redirect("/test")
+        res.set('token',`${token}`)
+        console.log(token)
+        console.log("token printed from user.controller!")
+        return res.json({token})
     }
     catch (error) {
         next(error)
