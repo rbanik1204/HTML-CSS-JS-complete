@@ -11,7 +11,7 @@ import { logger } from './middlewares/logger.js'
 //Mongod connection
 import connectMongoDB from './connection.js'
 import { globalError } from './middlewares/globalError.js'
-import { restrictToLoggedInUsersOnly } from './middlewares/auth.js'
+import { restrictToLoggedInUsersOnly, restrictUserTo } from './middlewares/auth.js'
 connectMongoDB("mongodb://127.0.0.1:27017/url")
 //ESM work around __dirname doesnt exist
 const __filename = fileURLToPath(import.meta.url) //path of the current file that along with app.js
@@ -36,7 +36,7 @@ app.use('/api',urlRouter)
 app.use('/users',userRouter)
 app.use('/analytics',urlRouter)
 app.use('/home',restrictToLoggedInUsersOnly,urlRouter)
-app.use('/',restrictToLoggedInUsersOnly,staticRouter)
+app.use('/',restrictToLoggedInUsersOnly,restrictUserTo(["NORMAL"]),staticRouter)
 
 app.use(globalError)
 
