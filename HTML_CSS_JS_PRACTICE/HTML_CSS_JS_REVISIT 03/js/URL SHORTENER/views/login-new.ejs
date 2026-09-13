@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Login/Sign-in</title>
+    <link rel="stylesheet" href="../public/assets/css/nav-style.css">
+    <link rel="stylesheet" href="../public/assets/css/style.css">
+    <!--temporarily since static path prefix set to public-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            
+        </div>
+        <div class="options">
+            <ul class="nav-links">
+            <li><a href="#">LOGIN</a></li>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">CONTACT</a></li>
+            <li><a href="#">ABOUT ME</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container active">
+        <!-- Login form -->
+        <div class="form-box login">
+            <form action="#">
+                <h1>Login</h1>
+                <div class="input-box">
+                    <input type="text" id="username" title="username" name="username" placeholder="Enter your username"><i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="password" title="password" name="password" placeholder="Enter your Password"><i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="forgot-pass">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" class="login-btn btn">Login</button>
+                <p>or register with other social platforms</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-google"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </form>
+        </div>
+        <div class="form-box register">
+
+            <form action="#">
+                <div class="input-box">
+                    <h1 class="head-register">Register</h1>
+                    <input type="text" name="username" placeholder="username" class="user"><i class="fa-solid fa-user fa-pos"></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" name="email" id="email" placeholder="email"><i
+                        class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="password" placeholder="password"><i class="fa-solid fa-lock"></i>
+                </div>
+                <button class="btn" type="submit">Register</button>
+                <p>or login with other social platforms</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-google"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </form>
+        </div>
+
+        <!-- toggle-box -->
+        <div class="toggle-box">
+            <!-- toggle-box left -->
+            <div class="toggle-panel toggle-left">
+                <h1>Hello, welcome</h1>
+                <p>Don't have an account?</p>
+                <button class="btn register-button">
+                    Register
+                </button>
+            </div>
+            <div class="toggle-panel toggle-right">
+                <h1>Welcome Back!</h1>
+                <p>Already have an account?</p>
+                <button class="btn login-button">Login</button>
+            </div>
+            <!-- toggle-box right  -->
+        </div>
+
+
+    </div>
+    <script>
+        const container = document.querySelector(".container")
+        const registerBtn = document.querySelector(".register-button")
+        const loginBtn = document.querySelector(".login-button")
+
+        registerBtn.addEventListener('click',(event)=>{
+            event.preventDefault()
+           container.classList.add("active")
+        })
+        loginBtn.addEventListener('click',(event)=>{
+            event.preventDefault()
+            container.classList.remove('active')
+        })
+    </script>
+</body>
+
+</html>

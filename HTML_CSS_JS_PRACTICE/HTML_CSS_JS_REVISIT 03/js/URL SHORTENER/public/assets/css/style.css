@@ -1,5 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
+    font-family: poppins, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../images/background.jpeg');
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 70%;
+    height: clamp(400px, 450px, 500px);
+    background-color: transparent;
+    margin: 2rem;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    backdrop-filter: blur(15px);
+}
+
+.container h1:not(.head-register) {
+    font-size: 36px;
+    margin: -10px 0;
+}
+
+.head-register {
+    margin-bottom: 20px;
+    font-weight:600;
+    color:white
+}
+
+.container p {
+    font-size: 13px;
+    margin: 10px 0 15px 0;
+    font-weight: 500;
+}
+
+form {
+    width: 100%;
+}
+
+.form-box {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: black;
+    padding: 20px;
+    text-align: center;
+    background-color: transparent;
+    z-index: 1;
+    transition: right 1s ease-in-out;
+}
+
+.container.active .form-box {
+    right: 50%;
+}
+
+.form-box.register {
+    visibility: hidden;
+}
+
+.container.active .form-box.register {
+    visibility: visible;
+}
+
+.input-box {
+    margin: 20px 0;
+    position: relative;
+}
+
+.container.active .form-box.login {
+    visibility: hidden;
+}
+
+.input-box input {
+    border-radius: 10px;
+    width: 100%;
+    height: 2.8rem;
+    padding: 5px;
+    font-weight: 500;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    background-color: #eee;
+    cursor: pointer;
+}
+
+.input-box input::placeholder {
+    color: #888;
+    position: absolute;
+    font-weight: 600;
+}
+
+.input-box i:not(.fa-pos) {
+    position: absolute;
+    top: 35%;
+    right: 6%;
+}
+
+.fa-pos {
+    position: absolute;
+    right: 6%;
+    bottom: 10%
+}
+
+.forgot-pass {
+    font-size: 0.9rem;
+    margin: -10px 0 10px 0;
+}
+
+.forgot-pass a {
+    color: black;
+}
+
+.btn {
+    width: 100%;
+    height: 2.8rem;
+    background: rgba(rgb(67, 129, 52), green, rgb(125, 125, 164), 0.2);
+    border: none;
+    border-radius: 10px;
+    background-color: #7494ec;
+    box-shadow: 0 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: white;
+}
+.btn:hover {
+    animation-name: button-glow;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+@keyframes button-glow {
+    0% {
+        box-shadow:
+            0 0 5px 5px rgba(19, 199, 118, 0.774),
+            5px 0 5px 5px rgba(49, 134, 119, 0.7);
+    }
+    25% {
+        box-shadow:
+            0 0 5px 5px rgba(50, 98, 228, 0.3),
+            0 5px 5px 5px rgba(53, 188, 233, 0.7);
+    }
+    50% {
+        box-shadow:
+            0 0 5px 5px rgba(89, 20, 239, 0.3),
+            -5px 0 5px 5px rgba(93, 152, 176, 0.7);
+    }
+    75% {
+        box-shadow:
+            0 0 5px 5px rgba(8, 244, 248, 0.724),
+            0 -5px 5px 5px rgba(24, 227, 223, 0.7);
+    }
+    100% {
+        box-shadow:
+            0 0 5px 5px rgba(6, 69, 241, 0.3),
+            5px 0 5px 5px rgba(49, 134, 119, 0.7);
+    }
+}
+.social-icons {
+    display: flex;
+    justify-content: center;
+    font-size: 1.4rem;
+    column-gap: 0.5rem;
+    margin-top: -0.5rem;
+}
+
+.social-icons a {
+    padding-left: 2px;
+    padding-right: 2px;
+    border: 2px solid rgba(17, 56, 139, 0.3);
+}
+
+.toggle-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.toggle-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -250%;
+    width: 300%;
+    height: 100%;
+    background: url('../images/container-bg.jpg') no-repeat;
+    background-position: 60% 60%;
+    backdrop-filter: blur(100px);
+    background-size: cover;
+    border-radius: 150px;
+    z-index: 3;
+    transition: 6s ease-in-out;
+}
+
+.container.active .toggle-box::before {
+    left: 50%;
+}
+
+.toggle-panel {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    z-index: 4;
+    color: white;
+    font-weight: 600;
+    flex-direction: column;
+    row-gap: 2.6em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: left 6s ease-in-out, right 1.8s ease-in-out;
+
+}
+
+.toggle-panel .btn {
+    width: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 1px rgba(176, 50, 50, 0.1)
+}
+
+.toggle-panel.toggle-left {
+    left: 0;
+    transition-delay: 0s;
+}
+
+.container.active .toggle-panel.toggle-left {
+    left: -150%;
+    transition-delay: 0s;
+}
+
+.toggle-panel.toggle-right {
+    right: -50%;
+    transition-delay: 0s;
+}
+
+.container.active .toggle-panel.toggle-right {
+    right: 0;
+    transition-delay: 0s
+}
+
+.toggle-panel p {
+    margin-bottom: 20px;
 }
