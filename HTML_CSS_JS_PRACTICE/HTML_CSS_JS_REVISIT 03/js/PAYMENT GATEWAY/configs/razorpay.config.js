@@ -1,5 +1,5 @@
-const razorpay = razorpay()
-const dotenv = require('dotenv')
+import razorpay from 'razorpay'
+import dotenv from 'dotenv'
 dotenv.config()
 const createRazorpayInstance = () => {
     return new razorpay({
@@ -7,4 +7,4 @@ const createRazorpayInstance = () => {
         key_secret: process.env.RAZORPAY_KEY_SECRET
     });//razorpay sdk factory
 }
-export default { createRazorpayInstance };
+export { createRazorpayInstance };

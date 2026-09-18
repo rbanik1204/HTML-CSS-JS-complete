@@ -7,4 +7,4 @@ async function handleViewHome(req,res,next){
         next(error) 
     }
 }
-export default { handleViewHome }
+export { handleViewHome }

@@ -19,4 +19,4 @@ app.use("/api/payments",createOrderRouter)
 app.use('/',homeRouter)
 
 app.use(globalError)
-export default {app}
+export {app}
