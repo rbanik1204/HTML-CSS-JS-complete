@@ -1,6 +1,6 @@
 const globalError = (err, req, res, next) => {
     return res.json({
-            code: err.code || 500,
+            success:false,
             message: err.message || "Internal Server Error"
         })
 }

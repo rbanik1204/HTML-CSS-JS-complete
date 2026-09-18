@@ -2,8 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import {logger} from './middlewares/logger.js'
 import { globalError } from './middlewares/globalError.js'
-import {paymentRouter} from './routes/payments.routes.js'
 import {router as homeRouter} from './routes/home.routes.js'
+import {router as createOrderRouter} from './routes/payments.routes.js'
 dotenv.config()//Doubt
 
 const app = express()
@@ -15,8 +15,8 @@ app.use(express.urlencoded({extended:false}))
 
 
 //Routes
-app.use("/api/payments",paymentRouter)
+app.use("/api/payments",createOrderRouter)
 app.use('/',homeRouter)
 
 app.use(globalError)
-export {app}
+export default {app}
