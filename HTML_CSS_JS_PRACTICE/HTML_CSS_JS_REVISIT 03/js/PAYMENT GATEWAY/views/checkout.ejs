@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Payment Portal Opening...</h2>
+        <p>please do not close or refresh</p>
+    </div>
+    <% if (locals.success && locals.order_id) { %>
+        <script>
+            const options = {
+                key: "<%= locals.key_id %>",
+                amount: "<%= locals.amount %>",
+                currency: "<%= locals.currency %>",
+
+                name: "Test Store Name",
+                description: "Test Transaction",
+
+                order_id: "<%= locals.order_id %>",
+
+                handler: function (response) {
+                    console.log("Payment response:", response);
+                }
+            }
+            const rzp = new Razorpay(options);
+            rzp.open();
+        </script>
+        <% } else { %>
+            <h3>Unable to initialize payment.</h3>
+            <% } %>
+</body>
+
+</html>

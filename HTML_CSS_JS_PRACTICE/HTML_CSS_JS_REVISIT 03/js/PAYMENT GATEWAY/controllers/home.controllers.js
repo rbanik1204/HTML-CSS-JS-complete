@@ -1,6 +1,10 @@
 async function handleViewHome(req,res,next){
     try{
-        return res.send("Hello from Home page");
+        console.log("From home controller")
+        return res.render("index",{
+            message:"Welcome to Payment Gateway",
+            status:true
+        })
     }catch(error){
         error.code = 404,
         error.message= "No content Found"
