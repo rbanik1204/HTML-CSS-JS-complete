@@ -2,6 +2,7 @@ import { createRazorpayInstance } from '../configs/razorpay.config.js'
 import Product from '../models/product.model.js'
 import { rupeesTopaisa } from '../utils/currency.js';
 import Order from '../models/order.model.js';
+import { createHmac } from 'crypto';
 export const createOrder = async (req, res) => {
     try {
         const razorpay = createRazorpayInstance();
@@ -25,7 +26,7 @@ export const createOrder = async (req, res) => {
             currency: "INR",
             receipt: `receipt_${Date.now()}`
         }
-        const razorpayOrder = await razorpay.orders.create(options);
+        const razorpayOrder = await razorpay.orders.create(options);//trigger api action
         const order = { //plain order Object
             product: product._id,
             amount: razorpayOrder.amount,
@@ -53,4 +54,66 @@ export const createOrder = async (req, res) => {
         })
     }
 }
+//current system doesn't yet prevent the creation of another payment attempt/order for an already-paid purchase
+export const verifyPaymentSignature = async (req, res) => {
+    try {
+        const {
+            razorpay_order_id,
+            razorpay_payment_id,
+            razorpay_signature
+        } = req.body;
+        // Basic validation
+        if (
+            !razorpay_order_id ||
+            !razorpay_payment_id ||
+            !razorpay_signature
+        ) {
+            return res.status(400).json({
+                success: false,
+                message: "Payment verification data is incomplete"
+            });
+        }
+        //verify razorpay signature using HMAC-SHA256
+        const dataString = razorpay_order_id + "|" + razorpay_payment_id;
+        const expectedSignature = createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+            .update(dataString)
+            .digest("hex")
+        if(expectedSignature.length !== 64 || typeof razorpay_signature !== String){
+            return res.status(400).json({
+                success: false,
+                message: "Invalid signature"
+            }); 
+        }
+        const isValid = crypto.timingSafeEqual(
+            Buffer.from(expectedSignature, "hex"),//hex string -> raw Binary Buffer Object
+            Buffer.from(razorpay_signature, "hex")
+        )
+        if (!isValid) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid signature"
+            });
+        }
+        //Find Order by its id
+        const order = await Order.findOne({
+            razorpayOrderId:razorpay_order_id
+        })
+        if(!order){
+            return res.status(404).json({
+                success:false,
+                message:"Invalid Order Id"
+            })
+        }
+        order.razorpayOrderId = razorpay_order_id;
+        order.status = "PAID";
+        await order.save()
+    }
 
+    catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            success: false,
+            message: "Payment verification failed"
+        })
+    }
+} 

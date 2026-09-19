@@ -15,6 +15,7 @@
     </div>
     <% if (locals.success && locals.order_id) { %>
         <script>
+            // Automatically launch Razorpay window using injected template variables
             const options = {
                 key: "<%= locals.key_id %>",
                 amount: "<%= locals.amount %>",
@@ -25,12 +26,24 @@
 
                 order_id: "<%= locals.order_id %>",
 
-                handler: function (response) {
+                handler: async function (response) {
                     console.log("Payment response:", response);
+                    const verifyResponse = await fetch("/api/payments/verify-payment", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_signature: response.razorpay_signature
+                        })
+                    });
                 }
+                
+
             }
             const rzp = new Razorpay(options);
-            rzp.open();
+            // Auto-open modal straight away on page load
+            rzp.open();//HTTPS payload parameters(JSON)
         </script>
         <% } else { %>
             <h3>Unable to initialize payment.</h3>
