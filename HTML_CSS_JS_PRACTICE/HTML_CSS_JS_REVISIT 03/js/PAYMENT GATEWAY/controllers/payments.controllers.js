@@ -2,7 +2,7 @@ import { createRazorpayInstance } from '../configs/razorpay.config.js'
 import Product from '../models/product.model.js'
 import { rupeesTopaisa } from '../utils/currency.js';
 import Order from '../models/order.model.js';
-import { createHmac } from 'crypto';
+import { createHmac, timingSafeEqual } from 'crypto';
 export const createOrder = async (req, res) => {
     try {
         const razorpay = createRazorpayInstance();
@@ -78,13 +78,13 @@ export const verifyPaymentSignature = async (req, res) => {
         const expectedSignature = createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
             .update(dataString)
             .digest("hex")
-        if(expectedSignature.length !== 64 || typeof razorpay_signature !== String){
+        if(expectedSignature.length !== 64 || razorpay_signature.length !== 64 || typeof razorpay_signature !== "string"){
             return res.status(400).json({
                 success: false,
                 message: "Invalid signature"
             }); 
         }
-        const isValid = crypto.timingSafeEqual(
+        const isValid = timingSafeEqual(
             Buffer.from(expectedSignature, "hex"),//hex string -> raw Binary Buffer Object
             Buffer.from(razorpay_signature, "hex")
         )
@@ -107,6 +107,10 @@ export const verifyPaymentSignature = async (req, res) => {
         order.razorpayOrderId = razorpay_order_id;
         order.status = "PAID";
         await order.save()
+        return res.status(200).json({
+            success:true,
+            message:"Payment verified successfully"
+        })
     }
 
     catch (error) {
@@ -117,3 +121,9 @@ export const verifyPaymentSignature = async (req, res) => {
         })
     }
 } 
+export const handlerSuccessfulPayment = (req,res)=>{
+    alert("Successful payment")
+}
+export const handlerFailedPayment = (req,res)=>{
+    return res.render('failure')
+}
