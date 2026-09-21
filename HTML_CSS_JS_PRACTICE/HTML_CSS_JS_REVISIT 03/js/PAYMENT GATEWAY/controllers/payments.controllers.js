@@ -26,6 +26,7 @@ export const createOrder = async (req, res) => {
             currency: "INR",
             receipt: `receipt_${Date.now()}`
         }
+        //Create a transaction intent immutable order Object
         const razorpayOrder = await razorpay.orders.create(options);//trigger api action
         const order = { //plain order Object
             product: product._id,
@@ -122,7 +123,7 @@ export const verifyPaymentSignature = async (req, res) => {
     }
 } 
 export const handlerSuccessfulPayment = (req,res)=>{
-    alert("Successful payment")
+    return res.render('success')
 }
 export const handlerFailedPayment = (req,res)=>{
     return res.render('failure')
