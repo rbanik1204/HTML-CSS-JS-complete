@@ -2,70 +2,57 @@ import fs from "node:fs"
 import path from "node:path"
 const entry = path.resolve('src/main.jsx')//Entry point -gives absolute path
 console.log("Entry:",entry)
-const importRegex = /import\s+.*?\s+from\s+["'](.+?)["']/g;
-
-//Module Storage
-//Every Module discovered by the bundler will be stored here
-//Key: Module Absolute path and Value: Module information
-const modules = new Map();
-let nextId = 0//Unique numeric id of each module
+const importRegex = /import\s.*?\sfrom\s["'](.+?)["']/g
+const source = fs.readFileSync(entry,"utf-8")
+let dependencies = []
+let modules = new Map()
+let nextId = 0
 function createModule(filePath){
-    const source = fs.readFileSync(filePath,"utf-8")
-    const id = nextId++;
+    const module = fs.readFileSync(filePath,"utf-8")
+    const id =nextId++;
+    let match;
+    let dependencies = []
+    while((match=importRegex.exec(module))!==null)
+        dependencies.push(match[1])
+    
     return {
         id,
+        source:module,
         filePath,
-        source,
-        dependencies:[]
+        dependencies
     }
 }
-//Find dependencies of Each module
-function findDependencies(source){
-    const dependencies = []
-    let match
-    while((match = importRegex.exec(source))!== null){
-        dependencies.push(match[1])
+function resolvePackage(packageName,importerPath){
+    let currentDir = path.dirname(importerPath)
+    while(true){
+        const nodeModulesPath = path.join(currentDir,"node_modules",packageName)
+        if(fs.existsSync(nodeModulesPath))
+            return nodeModulesPath
+        const parentDir = path.dirname(currentDir)//Continue upward
+        if(currentDir === parentDir)
+            break;
+        currentDir = parentDir
     }
-    // RegExp objects with /g maintain lastIndex.
-    // Reset it before another independent search.
-    importRegex.lastIndex = 0;
-
-    return dependencies;
-}
-function resolveDependency(request, parentFile){
-    const parentDirecory = path.dirname(parentFile)
-    //request : "./Button.jsx" and parentFile:"/project/src/main.jsx"
-    return path.resolve(parentDirecory, request)
+    throw new Error(`Cannot find package ${packageName}`)
 }
 function buildGraph(filePath){
-    if(modules.has(filePath))
-        return modules.get(filePath)
+    if(modules.has(filePath)) return  modules.get(filePath)
     const module = createModule(filePath)
-    modules.set(filePath, module)
-    
-    //Find imports 
-    const dependencyRequests = findDependencies(module.source)
-    // Resolve each dependency
-    for (const request of dependencyRequests) {
-        const dependencyPath =
-            resolveDependency(request, filePath);
-        const dependency = {
-            request,
-            filePath: dependencyPath
-        };
-        module.dependencies.push(dependency);
-        // Recursively build dependency graph
-        buildGraph(dependencyPath);
+    modules.set(filePath,module)
+    for(let dependency of module.dependencies){
+        if(dependency.startsWith('./')|| dependency.startsWith('../')){
+            //Relative dependency
+            const dependencyPath =
+                                path.resolve(path.dirname(filePath),dependency)
+            buildGraph(dependencyPath)
+        }
+        else{
+            //Package Dependency
+            const packagePath = resolvePackage(dependency,filePath)
+            console.log(`Package: \"${dependency}\" -> \"${packagePath}\"`)
+        }
     }
     return module;
 }
-const graph = buildGraph(entry)
-
-console.log("\nMODULE GRAPH:\n");
-
-for (const [filePath, module] of modules) {
-    console.log("ID:", module.id);
-    console.log("File:", filePath);
-    console.log("Dependencies:", module.dependencies);
-    console.log("--------------------------------");
-}
+buildGraph(entry)
+console.log(modules)
