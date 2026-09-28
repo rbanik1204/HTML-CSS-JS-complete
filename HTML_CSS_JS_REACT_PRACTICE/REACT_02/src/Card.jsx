@@ -1,6 +1,5 @@
-export function Card({varName,testArr}) {
+export function Card({myName,myArr}) {
     return <>
-        <h3>{varName}</h3>
-        <h3>{testArr}</h3>
+        <h2>{myName}</h2>
     </>
 }
