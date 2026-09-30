@@ -1,5 +1,7 @@
 function App() {
-  return <h1>BackGround changer</h1>
+  return (
+    <p className="font-extrabold">Welcome to Background Changer</p>
+  )
 }
 
 export default App
