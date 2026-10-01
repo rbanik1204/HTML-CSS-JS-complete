@@ -1,16 +1,15 @@
-import { useState } from "react"
-function Changer({ color }) {
-    const [backColor, setColor] = useState('white')
+export function Changer({ setColor }) {
 
     return (
         <>
-            <div className="flex justify-center items-cente gap-1 rounded-xl fixed w-screen h-[8vh] bottom-[5vh] bg-cyan-300">
-                <div className="w-[80px] h-[5vh]"><button onClick={() => setColor('white')}>white</button></div>
-                <div><button onClick={() => setColor('red')}></button></div>
-               <div><button onClick={() => setColor('blue')}></button></div>
-               <div> <button onClick={() => setColor('green')}></button></div>
-                <div><button onClick={() => setColor('yellow')}></button></div>
-                <div><button onClick={() => setColor('pink')}></button></div>
+            <div className="flex flex-wrap justify-center fixed w-screen h-[8vh] bottom-[5vh]">
+                <div className="w-[70vw] h-[8vh] flex justify-center items-center gap-5 rounded-xl bg-cyan-300">
+                    <div className="outline-none bg-slate-400 rounded-xl p-1"><button onClick={() => setColor('white')}>white</button></div>
+                    <div className="outline-none bg-red-700 rounded-xl p-1"><button onClick={() => setColor('red')}>red</button></div>
+                    <div className="outline-none bg-blue-500 rounded-xl p-1"><button onClick={() => setColor('blue')}>blue</button></div>
+                    <div className="outline-none bg-green-400  rounded-xl p-1"> <button onClick={() => setColor('green')}>green</button></div>
+                    <div className="outline-none bg-yellow-400 rounded-xl p-1"><button onClick={() => setColor('yellow')}>yellow</button></div>
+                    <div className="outline-none bg-pink-500 rounded-xl p-1"><button onClick={() => setColor('pink')}>pink</button></div></div>
             </div>
         </>
     )

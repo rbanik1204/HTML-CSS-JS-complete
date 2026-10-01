@@ -4,10 +4,10 @@ function App() {
   const [backColor, setColor] = useState('white')
 
   return (
-    <>
-      <p className="font-extrabold text-center ">Welcome to Background Changer</p>
-      <Changer />
-    </>
+    <div className="w-screen min-h-screen bg-violet-300" style={{backgroundColor:backColor}}>
+      <h1 className="p-3 font-extrabold text-center text-2xl">Welcome to Background Changer</h1>
+      <Changer setColor={setColor}/>
+    </div>
   )
 }
 
