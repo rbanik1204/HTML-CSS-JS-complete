@@ -5,11 +5,11 @@ function App() {
   const [numbersAllowed, setNumbersAllowed] = useState(false);
   const [symbolsAllowed, setSymbolsAllowed] = useState(false);
   const [password, setPassword] = useState('')
-  function generatePassword(){
+  function generatePassword(newLength,isCheckedNums,isCheckedSyms){
     const newPassword = generator.generate({
-      length:length,
-      numbers:numbersAllowed,
-      symbols:symbolsAllowed,
+      length:newLength,
+      numbers:isCheckedNums,
+      symbols:isCheckedSyms,
       
     })
     console.log(length)
@@ -17,21 +17,17 @@ function App() {
   }
   function handleChange(event){
     setLength(event.target.value);
-    generatePassword()
+    generatePassword(event.target.value,numbersAllowed,symbolsAllowed)
   }
   function handleCheckboxNumbers(event){
-    if(event.target.checked){
-      setNumbersAllowed(true)
-    }else {
-      setNumbersAllowed(false)
-    }
+    const isCheckedNums = event.target.checked
+    setNumbersAllowed(isCheckedNums)
+    generatePassword(length,isCheckedNums,symbolsAllowed)
   }
   function handleCheckboxSymbols(event){
-    if(event.target.checked){
-      setSymbolsAllowed(true)
-    }else{
-      setSymbolsAllowed(false)
-    }
+    const isCheckedSyms = event.target.checked
+    setSymbolsAllowed(isCheckedSyms)
+    generatePassword(length,numbersAllowed,isCheckedSyms)
   }
   return (
     <div className='w-screen min-h-screen bg-black flex flex-start items-center flex-col gap-7'>
@@ -43,8 +39,8 @@ function App() {
         </div>
         <div >
           <input type="range" min="1" max="100" value={length} onChange={handleChange}/><span>&nbsp;Length({length})&nbsp;</span>
-          <input type="checkbox" name="numbers" id="numbers" onChange={handleCheckboxNumbers} /><span>&nbsp;numbers&nbsp;</span>
-          <input type="checkbox" name="symbols" id="symbols" onChange={handleCheckboxSymbols}/><span>&nbsp;symbols&nbsp;</span>
+          <input type="checkbox" name="numbers" id="numbers" checked={numbersAllowed} onChange={handleCheckboxNumbers} /><span>&nbsp;numbers&nbsp;</span>
+          <input type="checkbox" name="symbols" id="symbols" checked={symbolsAllowed}  onChange={handleCheckboxSymbols}/><span>&nbsp;symbols&nbsp;</span>
         </div>
       </div>
     </div>
