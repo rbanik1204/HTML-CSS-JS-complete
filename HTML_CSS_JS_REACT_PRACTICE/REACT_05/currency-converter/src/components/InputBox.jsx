@@ -21,7 +21,7 @@ function InputBox(
                     {label}
                 </label>
                 <input
-
+                    id={amountInputId}
                     className="outline-none w-full bg-transparent py-1.5"
                     type="number"
                     placeholder="Amount"
@@ -39,7 +39,7 @@ function InputBox(
                 >
 
                     {currencyOptions.map((currency) =>
-                        <option value={currency}>
+                        <option key={currency} value={currency}>
                             {currency}
                         </option>)
                     }
