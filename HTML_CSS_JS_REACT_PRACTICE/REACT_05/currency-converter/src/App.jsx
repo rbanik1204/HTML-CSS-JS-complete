@@ -22,13 +22,13 @@ function App() {
   }
     return (
         <div
-            className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat"
+            className="w-full h-screen bg-cover bg-center bg-no-repeat flex justify-center items-center"
             style={{
                 backgroundImage: `url('${BackgroundImage}')`,
             }}
         >
-            <div className="w-full">
-                <div className="w-full max-w-md mx-auto border border-gray-60 rounded-lg p-5 backdrop-blur-sm bg-white/30">
+            <div className="w-[40vw] h-[40vh] ">
+                <div className="w-full h-full  border border-gray-60 rounded-lg p-5 backdrop-blur-sm bg-white/30">
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
