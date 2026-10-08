@@ -10,15 +10,15 @@ function App() {
   const currencyInfo = useCurrencyInfo(from);
   let options = Object.keys(currencyInfo[from] || {});
   const swap = ()=>{
-    const swapVar = from;
+    // const swapVar = from;
     setFrom(to);
-    setTo(swapVar);
+    setTo(from);
     const swapAmount = amount;
     setAmount(convertedAmount);
     setConvertedAmount(swapAmount);
   }
   const convert = ()=>{
-    setConvertedAmount(amount*currencyInfo[to])
+    setConvertedAmount(amount*options[to])
   }
     return (
         <div
