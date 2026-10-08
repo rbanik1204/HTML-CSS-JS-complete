@@ -28,14 +28,14 @@ function App() {
             }}
         >
             <div className="w-[40vw] h-[40vh] ">
-                <div className="w-full h-full  border border-gray-60 rounded-lg p-5 backdrop-blur-sm bg-white/30">
+                <div className="w-full h-full  border border-gray-60 rounded-lg flex justify-center items-center backdrop-blur-sm bg-white/30">
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
                             convert()
                         }}
                     >
-                        <div className="w-full mb-1">
+                        <div className="w-full">
                             <InputBox
                                 label="From"
                                 amount={amount}
@@ -47,16 +47,16 @@ function App() {
                                 }}
                             />
                         </div>
-                        <div className="relative w-full h-0.5">
+                        <div className="w-full text-center relative">
                             <button
                                 type="button"
-                                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5"
+                                className=" w-[5vw] h-[5vh] rounded-3xl border-2 bg-blue-500 text-white/90 font-extrabold"
                                 
                             >
                                 swap
                             </button>
                         </div>
-                        <div className="w-full mt-1 mb-4">
+                        <div className="w-full">
                             <InputBox
                                 label="To"
                                 convertedAmount={convertedAmount}
@@ -65,7 +65,7 @@ function App() {
                                 selectCurrency={to}
                             />
                         </div>
-                        <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg" onClick={(e)=>swap()}>
+                        <button type="submit" className="text-2xl w-[30vw] h-[7vh] mt-5 rounded-3xl bg-blue-500 text-white/90 font-extrabold" >
                             Convert 
                         </button>
                     </form>
