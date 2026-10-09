@@ -8,9 +8,9 @@ function App() {
   const [convertedAmount, setConvertedAmount] = useState(false);
   const BackgroundImage = '../assets/wallpaper.jpg' 
   const currencyInfo = useCurrencyInfo(from);
-  let options = Object.keys(currencyInfo[from] || {});
+  let options = Object.entries(currencyInfo[from]) || {};
   const swap = ()=>{
-    // const swapVar = from;
+    const swapVar = from;
     setFrom(to);
     setTo(from);
     const swapAmount = amount;
@@ -18,7 +18,8 @@ function App() {
     setConvertedAmount(swapAmount);
   }
   const convert = ()=>{
-    setConvertedAmount(amount*options[to])
+    setConvertedAmount(amount*options)
+    console.log(options)
   }
     return (
         <div
@@ -51,7 +52,7 @@ function App() {
                             <button
                                 type="button"
                                 className=" w-[5vw] h-[5vh] rounded-3xl border-2 bg-blue-500 text-white/90 font-extrabold"
-                                
+                                onClick={swap}
                             >
                                 swap
                             </button>
@@ -65,7 +66,7 @@ function App() {
                                 selectCurrency={to}
                             />
                         </div>
-                        <button type="submit" className="text-2xl w-[30vw] h-[7vh] mt-5 rounded-3xl bg-blue-500 text-white/90 font-extrabold" >
+                        <button type="submit" className="text-2xl w-[30vw] h-[7vh] mt-5 rounded-3xl bg-blue-500 text-white/90 font-extrabold" onClick={convert}>
                             Convert 
                         </button>
                     </form>
