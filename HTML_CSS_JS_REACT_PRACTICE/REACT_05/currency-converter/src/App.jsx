@@ -8,7 +8,7 @@ function App() {
   const [convertedAmount, setConvertedAmount] = useState(false);
   const BackgroundImage = '../assets/wallpaper.jpg' 
   const currencyInfo = useCurrencyInfo(from);
-  let options = Object.entries(currencyInfo[from]) || {};
+  let options = Object.keys(currencyInfo) || {};
   const swap = ()=>{
     const swapVar = from;
     setFrom(to);
