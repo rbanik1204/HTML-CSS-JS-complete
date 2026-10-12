@@ -8,19 +8,22 @@ function App() {
   const [convertedAmount, setConvertedAmount] = useState(false);
   const BackgroundImage = '../assets/wallpaper.jpg' 
   const currencyInfo = useCurrencyInfo(from);
-  let options = Object.keys(currencyInfo) || {};
+  let options = Object.keys(currencyInfo[from] ?? {})
   const swap = ()=>{
     const swapVar = from;
     setFrom(to);
-    setTo(from);
+    setTo(swapVar);
     const swapAmount = amount;
     setAmount(convertedAmount);
     setConvertedAmount(swapAmount);
   }
-  const convert = ()=>{
-    setConvertedAmount(amount*options)
-    console.log(options)
-  }
+  const convert = () => {
+    const rate = currencyInfo[from]?.[to];
+
+    if (rate !== undefined) {
+        setConvertedAmount(amount * rate);
+    }
+};
     return (
         <div
             className="w-full h-screen bg-cover bg-center bg-no-repeat flex justify-center items-center"
@@ -60,9 +63,10 @@ function App() {
                         <div className="w-full">
                             <InputBox
                                 label="To"
-                                convertedAmount={convertedAmount}
-                                currencyOptions={options}
+                                amount={convertedAmount}
+                                onAmountChange={setAmount}
                                 onCurrencyChange={(currency)=>setTo(currency)}
+                                currencyOptions={options}
                                 selectCurrency={to}
                             />
                         </div>

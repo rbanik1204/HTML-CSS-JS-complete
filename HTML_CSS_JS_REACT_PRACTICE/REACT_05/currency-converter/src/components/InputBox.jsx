@@ -10,12 +10,11 @@ function InputBox(
         selectCurrency = "usd",
         amountDisable = false,
         currencyDisable = false,
-        className = '',
     }
 ) {
     const amountInputId = useId()
     return (
-        <div className={``}>
+        <div>
             <div className="w-1/2 inline-block">
                 <label htmlFor={amountInputId} className="text-black mb-2 font-extrabold">
                     {label}

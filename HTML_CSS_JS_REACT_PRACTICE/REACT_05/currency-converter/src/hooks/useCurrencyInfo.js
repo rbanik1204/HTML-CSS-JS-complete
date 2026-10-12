@@ -9,6 +9,6 @@ export default function useCurrencyInfo(currency) {
             setData(currencyInfo);
         }
         loadData()
-    }, [data])
+    }, [currency])
     return data;
 }
