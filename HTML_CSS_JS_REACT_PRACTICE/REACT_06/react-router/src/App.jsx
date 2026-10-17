@@ -8,9 +8,13 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/products/:productID" element={<Products />} />
+        <Route path="/products" element={<Products />}>
+          <Route path=":productID" elements={<Products />} />
+        </Route>
         <Route path="/about" element={<About />} />
-        <Route path="/:id" element={<Home />} />
+        <Route path="/" element={<Home />}>
+          <Route path=":id" element={<Home />}></Route>
+        </Route>
       </Routes>
     </>
   )
