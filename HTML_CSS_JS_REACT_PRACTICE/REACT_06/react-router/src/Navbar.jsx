@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink } from "react-router"
 export default function Navbar() {
   return (
     <nav className="sticky w-screen h-12 flex justify-center gap-5 items-center bg-white font-bold font-mono">
@@ -26,6 +26,14 @@ export default function Navbar() {
       >
         About
       </NavLink>
+      <NavLink
+        to="/login"
+        className={({ isActive }) =>
+          `px-3 py-1 rounded-md transition-colors ${isActive ? "bg-pink-500 text-white" : "text-green-900 hover:bg-green-500"}`
+        }
+      >
+        Login
+      </NavLink>
     </nav>
-  );
+  )
 }

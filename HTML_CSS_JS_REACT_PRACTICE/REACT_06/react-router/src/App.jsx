@@ -5,6 +5,7 @@ import About from "./About"
 import Products from "./Products"
 import { HomeChild } from "./HomeChild"
 import { ProductChild } from "./ProductChild"
+import { Login } from "./Login"
 function App() {
   return (
     <>
@@ -14,8 +15,9 @@ function App() {
           <Route path=":productID" element={<ProductChild />} />
         </Route>
         <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />}>
-          <Route path=":id" element={<HomeChild />}></Route>
+          <Route path=":id" element={<HomeChild />} />
         </Route>
       </Routes>
     </>
