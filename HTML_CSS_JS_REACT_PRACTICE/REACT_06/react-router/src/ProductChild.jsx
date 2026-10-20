@@ -3,7 +3,6 @@ import {
   useNavigate,
   useParams,
   useSearchParams,
-  useLocation,
 } from "react-router"
 export function ProductChild() {
   const { productID } = useParams()
