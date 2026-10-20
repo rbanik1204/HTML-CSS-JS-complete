@@ -38,11 +38,13 @@ export function ProductChild() {
         </div>
       )}
       <div>
-        <p>{location.pathname}</p>
-        <p>{location.search}</p>
-        <p>{location.mask}</p>
-        <p>{location.hash}</p>
-        <p>{location.key}</p>
+        <p>Pathname:&nbsp;{location.pathname}</p>
+        <p>search query string:&nbsp;{location.search}</p>
+        <p>location mask:&nbsp;{location.mask}</p>// it is an internal property
+        used by modern React Router (v6+) or specific framework wrappers (like
+        Remix) during future flags or route masking.
+        <p>location hash:&nbsp;{location.hash}</p>//fragment
+        <p>location key:&nbsp;{location.key}</p>//default
       </div>
     </div>
   )
