@@ -1,8 +1,15 @@
-import { useNavigate, useParams, useSearchParams } from "react-router"
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+  useLocation,
+} from "react-router"
 export function ProductChild() {
   const { productID } = useParams()
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
+  const location = useLocation()
   const category = searchParams.get("category") || null
   const price = searchParams.get("price") || null
   return (
@@ -31,6 +38,13 @@ export function ProductChild() {
           <p>Selected Price range: {price}</p>
         </div>
       )}
+      <div>
+        <p>{location.pathname}</p>
+        <p>{location.search}</p>
+        <p>{location.mask}</p>
+        <p>{location.hash}</p>
+        <p>{location.key}</p>
+      </div>
     </div>
   )
 }
